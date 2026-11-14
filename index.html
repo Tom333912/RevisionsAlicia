@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Défi Présent d'Alicia ✨ — Spécial Shakira</title>
+<style>
+  :root {
+    --bg: #fdf4ff;
+    --card: #ffffff;
+    --primary: #c026d3;
+    --primary-hover: #a21caf;
+    --primary-light: #fae8ff;
+    --secondary: #f59e0b;
+    --success: #10b981;
+    --success-bg: #ecfdf5;
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+    --warning: #f59e0b;
+    --warning-bg: #fffbeb;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #f3e8ff;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #fdf4ff 0%, #fff1f2 50%, #fffbeb 100%);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 20px 14px 48px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .brand h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #c026d3, #e11d48, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+
+  .brand p {
+    font-size: 0.92rem;
+    color: #701a75;
+    font-weight: 500;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 5px rgba(192, 38, 211, 0.08);
+  }
+
+  .btn-tab {
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.15s;
+  }
+  .btn-tab:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .controls-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(192, 38, 211, 0.06);
+  }
+
+  .control-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  select, input[type="text"] {
+    padding: 8px 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.92rem;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+  }
+  select:focus, input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(192, 38, 211, 0.15);
+  }
+
+  .segmented {
+    display: inline-flex;
+    background: #fdf4ff;
+    padding: 3px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+  }
+  .segmented button {
+    border: none;
+    background: transparent;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .segmented button.active {
+    background: #fff;
+    color: var(--primary);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .toggle-adaptive {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    color: var(--text);
+  }
+
+  .game-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(192, 38, 211, 0.08);
+    margin-bottom: 16px;
+  }
+
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #86198f;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 9px;
+    background: #fae8ff;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c026d3, #f59e0b);
+    transition: width 0.3s ease;
+  }
+
+  .verb-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .verb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+  }
+
+  .remediation-tag {
+    background: var(--warning-bg);
+    color: #b45309;
+    border: 1px solid #fde68a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .btn-icon {
+    background: #fdf4ff;
+    border: 1px solid #f0abfc;
+    color: #86198f;
+    padding: 6px 12px;
+    border-radius: 9px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .btn-icon:hover { background: #fae8ff; }
+
+  .sentence-box {
+    font-size: 1.42rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 26px 16px;
+    background: linear-gradient(180deg, #fff 0%, #fdf4ff 100%);
+    border: 2px dashed #e879f9;
+    border-radius: 14px;
+    margin-bottom: 22px;
+  }
+
+  .blank {
+    display: inline-block;
+    min-width: 125px;
+    border-bottom: 3px solid var(--primary);
+    color: var(--primary);
+    padding: 0 8px;
+    margin: 0 4px;
+    font-weight: 800;
+  }
+  .blank.correct { border-color: var(--success); color: var(--success); }
+  .blank.wrong { border-color: var(--danger); color: var(--danger); }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 520px) {
+    .options-grid { grid-template-columns: 1fr; }
+  }
+
+  .option-btn {
+    padding: 14px 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+  .option-btn:disabled { cursor: default; }
+  .option-btn.correct {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #065f46;
+  }
+  .option-btn.wrong {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+    color: #991b1b;
+  }
+
+  .typing-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .typing-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    max-width: 440px;
+  }
+  .typing-row input {
+    flex: 1;
+    font-size: 1.15rem;
+    padding: 11px 14px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .accent-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .accent-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #f0abfc;
+    background: #fdf4ff;
+    font-weight: 800;
+    font-size: 0.98rem;
+    color: #86198f;
+    cursor: pointer;
+  }
+  .accent-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #c026d3, #db2777);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 11px;
+    font-size: 0.98rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(192, 38, 211, 0.25);
+    transition: 0.15s;
+  }
+  .btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+  .feedback-panel {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 14px;
+    border: 2px solid var(--border);
+    animation: fadeIn 0.25s ease;
+  }
+  .feedback-panel.success { background: var(--success-bg); border-color: #6ee7b7; }
+  .feedback-panel.error { background: var(--danger-bg); border-color: #fca5a5; }
+
+  .feedback-title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .diag-badge {
+    display: inline-block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+
+  /* Reward Unlock Banner */
+  .reward-unlock {
+    margin-top: 14px;
+    background: linear-gradient(135deg, #fffbeb 0%, #fae8ff 100%);
+    border: 2px solid #f59e0b;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .reward-unlock svg {
+    width: 84px;
+    height: 84px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  }
+
+  .conjugation-box {
+    margin-top: 14px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .conjugation-box h4 {
+    font-size: 0.9rem;
+    color: #86198f;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .conj-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 16px;
+  }
+  @media (max-width: 480px) { .conj-grid { grid-template-columns: 1fr; } }
+
+  .conj-item {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.96rem;
+    display: flex;
+    gap: 6px;
+  }
+  .conj-item.highlight {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+    border: 1px solid #f0abfc;
+  }
+
+  .rule-tip {
+    margin-top: 12px;
+    font-size: 0.92rem;
+    background: #fdf4ff;
+    padding: 10px 12px;
+    border-left: 4px solid var(--primary);
+    border-radius: 6px;
+    color: #334155;
+  }
+
+  .action-row {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Album Shakira & Analysis Cards */
+  .analysis-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: 0 8px 20px rgba(192, 38, 211, 0.08);
+  }
+
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
+  @media (max-width: 600px) { .album-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .sticker-card {
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+    background: #fff;
+    transition: transform 0.2s;
+  }
+  .sticker-card.unlocked {
+    border-color: #f59e0b;
+    background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  }
+  .sticker-card.unlocked:hover { transform: scale(1.03); }
+  .sticker-card.locked {
+    background: #f8fafc;
+    opacity: 0.72;
+  }
+  .sticker-art {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+  }
+  .sticker-art svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .sticker-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .sticker-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0 20px;
+  }
+  .kpi {
+    background: #fdf4ff;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .kpi .val { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+  .kpi .lbl { font-size: 0.8rem; color: #86198f; font-weight: 700; }
+
+  .weakness-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .weakness-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .mastery-pills {
+    display: flex;
+    gap: 4px;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #e2e8f0;
+  }
+  .dot.filled { background: var(--success); }
+
+  .hidden { display: none !important; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .reward-unlock img, .reward-unlock svg {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 12px;
+    flex-shrink: 0;
+    border: 2px solid #f59e0b;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  .sticker-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .photo-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 20px;
+  }
+  .photo-modal-card {
+    background: #fff;
+    border-radius: 18px;
+    max-width: 420px;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    border: 3px solid #f59e0b;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    animation: popIn 0.25s ease;
+  }
+  .photo-modal-card img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+
+  .inline-input {
+    display: inline-block;
+    min-width: 110px;
+    width: 150px;
+    max-width: 240px;
+    border: none;
+    border-bottom: 3px solid var(--primary);
+    background: #fae8ff;
+    color: var(--primary);
+    font-size: inherit;
+    font-weight: 800;
+    text-align: center;
+    padding: 2px 10px;
+    margin: 0 4px;
+    border-radius: 8px 8px 0 0;
+    outline: none;
+    transition: all 0.15s;
+  }
+  .inline-input:focus {
+    background: #f5d0fe;
+    box-shadow: 0 4px 12px rgba(192, 38, 211, 0.2);
+  }
+  .inline-input.math-inline {
+    width: 95px;
+    min-width: 80px;
+    font-size: 1.9rem;
+  }
+  .inline-input.correct {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .inline-input.wrong {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  /* Hide number input spin arrows */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] { -moz-appearance: textfield; }
+
+
+  /* Shakira Streak Celebratory Pop-up */
+  .shakira-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(112, 26, 117, 0.35);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    padding: 16px;
+    animation: fadeIn 0.2s ease;
+  }
+  .shakira-popup-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fdf4ff 55%, #fffbeb 100%);
+    border: 3px solid #f59e0b;
+    border-radius: 22px;
+    max-width: 420px;
+    width: 100%;
+    padding: 24px 22px;
+    text-align: center;
+    box-shadow: 0 22px 45px rgba(192, 38, 211, 0.32);
+    position: relative;
+    overflow: hidden;
+    animation: popBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .shakira-popup-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #c026d3, #f59e0b);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .shakira-popup-emoji {
+    font-size: 3.1rem;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    animation: wiggle 0.8s ease-in-out infinite alternate;
+  }
+  .shakira-popup-title {
+    font-size: 1.32rem;
+    font-weight: 800;
+    color: #701a75;
+    margin-bottom: 8px;
+  }
+  .shakira-popup-msg {
+    font-size: 1rem;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .shakira-popup-ref {
+    background: #fae8ff;
+    border: 1px dashed #d946ef;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #86198f;
+    margin-bottom: 16px;
+  }
+  @keyframes popBounce {
+    0% { opacity: 0; transform: scale(0.75) translateY(18px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes wiggle {
+    from { transform: rotate(-6deg) scale(1); }
+    to { transform: rotate(6deg) scale(1.08); }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="brand">
+      <h1>✨ Les Défis d'Alicia — Spécial Shakira ✨</h1>
+      <p>Gagne des cartes collector de Shakira en conjuguant et en calculant comme une star !</p>
+    </div>
+    <div class="stats-bar">
+      <div class="pill" title="Score de la série">⭐ <span id="scoreVal">0</span>/<span id="totalVal">0</span></div>
+      <div class="pill" title="Série de bonnes réponses">🔥 <span id="streakVal">0</span></div>
+      <button class="btn-tab" id="btnToggleAlbum" onclick="switchView('album')">🎤 Album Shakira (<span id="albumCountBadge">0</span>/18)</button>
+      <button class="btn-tab" id="btnToggleAnalysis" onclick="switchView('analysis')">📊 Progrès</button>
+    </div>
+  </header>
+
+  <div class="controls-card" style="justify-content: center; background: linear-gradient(90deg, #fae8ff, #fff1f2); border-color: #f0abfc;">
+    <div class="segmented" style="background: #fff; padding: 4px; box-shadow: 0 2px 6px rgba(192,38,211,0.1);">
+      <button id="subjConjBtn" class="active" onclick="switchSubject('conj')" style="font-size: 0.95rem; padding: 8px 14px;">✍️ Conjugaison (Présent)</button>
+      <button id="subjMathBtn" onclick="switchSubject('math')" style="font-size: 0.95rem; padding: 8px 14px;">🔢 Tables de multiplication</button>
+      <button id="subjAddSubBtn" onclick="switchSubject('addsub')" style="font-size: 0.95rem; padding: 8px 14px;">➕➖ Additions & Soustractions</button>
+    </div>
+  </div>
+
+  <div class="controls-card" id="controlsBar">
+    <div class="control-group">
+      <select id="verbSelect" onchange="handleVerbChange()">
+        <option value="ALL">🎲 Mix aléatoire (tous les verbes)</option>
+        <option value="WEAK">🎯 Mes verbes à réviser</option>
+        <option value="CUSTOM">➕ Choisir un autre verbe...</option>
+      </select>
+      <input type="text" id="customVerbInput" class="hidden" placeholder="Ex: chanter, danser..." onkeydown="if(event.key==='Enter') applyCustomVerb()">
+      <button id="customVerbBtn" class="btn-icon hidden" onclick="applyCustomVerb()">OK</button>
+    </div>
+
+    <div class="control-group">
+      <div class="segmented" role="group" aria-label="Mode de réponse">
+        <button id="modeQcmBtn" class="active" onclick="setInputMode('qcm')">QCM (4 choix)</button>
+        <button id="modeTypeBtn" onclick="setInputMode('type')">Écrire le verbe</button>
+      </div>
+      <label class="toggle-adaptive" title="Adapte les questions pour aider Alicia">
+        <input type="checkbox" id="adaptiveCheck" checked> Mode malin
+      </label>
+    </div>
+  </div>
+
+  <!-- GAME VIEW -->
+  <div id="gameView">
+    <div class="game-card" id="questionCard">
+      <div class="progress-wrap">
+        <span id="questionCounter">Question 1 / 10</span>
+        <span id="nextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 10%"></div></div>
+
+      <div class="verb-header">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span class="verb-badge" id="verbBadge">Verbe : chanter</span>
+          <span class="remediation-tag hidden" id="remediationTag">🔁 Petit entraînement bonus</span>
+        </div>
+        <button class="btn-icon" onclick="newExampleForCurrent()" title="Changer de phrase">🔄 Autre phrase</button>
+      </div>
+
+      <div class="sentence-box" id="sentenceBox">
+        Alicia <span class="blank">...</span> sa chanson préférée de Shakira.
+      </div>
+
+      <!-- QCM -->
+      <div class="options-grid" id="optionsGrid"></div>
+
+      <!-- TYPING -->
+      <div class="typing-area hidden" id="typingArea">
+        <div class="accent-bar">
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('é')">é</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('è')">è</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('ê')">ê</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('à')">à</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('ç')">ç</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('î')">î</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('ô')">ô</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="insertChar('û')">û</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn-primary" id="submitTypeBtn" onclick="submitTypedAnswer()">Valider ✨</button>
+          <label class="toggle-adaptive" title="Valide automatiquement dès que le mot exact est écrit">
+            <input type="checkbox" id="autoValidateConj" checked> ⚡ Validation auto
+          </label>
+        </div>
+      </div>
+
+      <!-- FEEDBACK -->
+      <div class="feedback-panel hidden" id="feedbackPanel">
+        <div class="feedback-title" id="feedbackTitle"></div>
+        <div id="feedbackSub" style="font-size:0.96rem;"></div>
+
+        <!-- REWARD UNLOCK CONTAINER -->
+        <div id="rewardUnlockBox" class="hidden"></div>
+
+        <div class="conjugation-box hidden" id="conjugationBox">
+          <h4 id="conjBoxTitle">Conjugaison complète au présent</h4>
+          <div class="conj-grid" id="conjGrid"></div>
+          <div class="rule-tip" id="ruleTip"></div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-icon hidden" id="btnShowConj" onclick="revealConjugation()">📖 Voir tout le verbe</button>
+          <button class="btn-primary" id="btnNext" onclick="nextQuestion()">Question suivante →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- END OF SERIES SUMMARY -->
+    <div class="analysis-card hidden" id="summaryCard">
+      <h2>🎉 Bravo Alicia, série terminée !</h2>
+      <p style="color:var(--muted); margin-top:4px;">Voici tes résultats pour cette manche :</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val" id="sumScore">8/10</div><div class="lbl">Score d'Alicia</div></div>
+        <div class="kpi"><div class="val" id="sumAcc">80%</div><div class="lbl">Réussite</div></div>
+        <div class="kpi"><div class="val" id="sumCards">3/9</div><div class="lbl">Cartes Shakira</div></div>
+      </div>
+      <div id="sumMistakesArea"></div>
+      <div class="action-row" style="margin-top:20px;">
+        <button class="btn-icon" onclick="switchView('album')">🎤 Voir mon Album Shakira</button>
+        <button class="btn-icon" onclick="startNewSeries(false)">Rejouer une série</button>
+        <button class="btn-primary hidden" id="btnPracticeWeak" onclick="startNewSeries(true)">🎯 M'entraîner sur mes erreurs</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MATH CONTROLS & GAME VIEW -->
+  <div class="controls-card hidden" id="mathControlsBar">
+    <div class="control-group" style="width:100%; justify-content:space-between;">
+      <div class="segmented" role="group" aria-label="Mode de tables">
+        <button id="mathModeMixBtn" class="active" onclick="setMathTableMode('mix')">🎲 Mix (2 à 10)</button>
+        <button id="mathModeSelectBtn" onclick="setMathTableMode('select')">🎯 Choisir mes tables</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Type de calcul">
+        <button id="mathTypeClassicBtn" class="active" onclick="setMathQuestionType('classic')">Classique</button>
+        <button id="mathTypeHoleBtn" onclick="setMathQuestionType('hole')">À trous</button>
+        <button id="mathTypeBothBtn" onclick="setMathQuestionType('both')">🔀 Les deux</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Mode de saisie math">
+        <button id="mathInputTypeBtn" class="active" onclick="setMathInputMode('type')">⌨️ Écrire</button>
+        <button id="mathInputQcmBtn" onclick="setMathInputMode('qcm')">⚡ QCM</button>
+      </div>
+    </div>
+    <div id="tableCheckboxesArea" class="hidden" style="width:100%; padding-top:8px; border-top:1px dashed #f0abfc; display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <span style="font-size:0.85rem; font-weight:700; color:#86198f;">Tables à réviser :</span>
+      <div id="tablePillsContainer" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+    </div>
+  </div>
+
+  <div id="mathGameView" class="hidden">
+    <div class="game-card" id="mathQuestionCard">
+      <div class="progress-wrap">
+        <span id="mathQuestionCounter">Calcul 1 / 10</span>
+        <span id="mathNextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="mathProgressFill" style="width: 10%"></div></div>
+
+      <div class="verb-header">
+        <span class="verb-badge" id="mathBadge">Table de 7</span>
+        <button class="btn-icon" onclick="generateMathQuestion()">🔄 Autre calcul</button>
+      </div>
+
+      <div class="sentence-box" id="mathEquationBox" style="font-size: 2rem; letter-spacing: 0.03em;">
+        7 × 8 = <span class="blank">?</span>
+      </div>
+
+      <div class="options-grid hidden" id="mathOptionsGrid"></div>
+
+      <div class="typing-area" id="mathTypingArea">
+        <div class="accent-bar" style="margin-top:2px;">
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('1')">1</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('2')">2</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('3')">3</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('4')">4</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('5')">5</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('6')">6</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('7')">7</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('8')">8</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('9')">9</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendMathDigit('0')">0</button>
+          <button class="accent-btn" style="width:auto; padding:0 10px;" onmousedown="event.preventDefault()" onclick="backspaceMathDigit()">⌫</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn-primary" id="submitMathBtn" onclick="submitMathAnswer()">Valider ✨</button>
+          <label class="toggle-adaptive" title="Valide automatiquement dès que le bon nombre est tapé">
+            <input type="checkbox" id="autoValidateMath" checked> ⚡ Validation auto
+          </label>
+        </div>
+      </div>
+
+      <div class="feedback-panel hidden" id="mathFeedbackPanel">
+        <div class="feedback-title" id="mathFeedbackTitle"></div>
+        <div id="mathFeedbackSub" style="font-size:0.96rem;"></div>
+        <div id="mathRewardUnlockBox" class="hidden"></div>
+        <div class="rule-tip hidden" id="mathTipBox"></div>
+        <div class="action-row">
+          <button class="btn-primary" id="btnMathNext" onclick="nextMathQuestion()">Calcul suivant →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MATH SUMMARY CARD -->
+    <div class="analysis-card hidden" id="mathSummaryCard">
+      <h2>🎉 Bravo Alicia, série de calculs terminée !</h2>
+      <p style="color:var(--muted); margin-top:4px;">Voici tes résultats en calcul mental :</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val" id="mathSumScore">8/10</div><div class="lbl">Score d'Alicia</div></div>
+        <div class="kpi"><div class="val" id="mathSumAcc">80%</div><div class="lbl">Réussite</div></div>
+        <div class="kpi"><div class="val" id="mathSumCards">3/18</div><div class="lbl">Cartes Shakira</div></div>
+      </div>
+      <div id="mathSumMistakesArea"></div>
+      <div class="action-row" style="margin-top:20px;">
+        <button class="btn-icon" onclick="switchView('album')">🎤 Voir mon Album Shakira</button>
+        <button class="btn-primary" onclick="startNewMathSeries()">Rejouer une série ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADDITION & SUBTRACTION CONTROLS & GAME VIEW -->
+  <div class="controls-card hidden" id="addSubControlsBar">
+    <div class="control-group" style="width:100%; justify-content:space-between; gap:8px;">
+      <div class="segmented" role="group" aria-label="Opération">
+        <button id="asOpBothBtn" class="active" onclick="setAsOperation('both')">➕➖ Les deux</button>
+        <button id="asOpAddBtn" onclick="setAsOperation('add')">➕ Additions</button>
+        <button id="asOpSubBtn" onclick="setAsOperation('sub')">➖ Soustractions</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Difficulté">
+        <button id="asDiff1Btn" class="active" onclick="setAsDifficulty(1)">⭐ Facile</button>
+        <button id="asDiff2Btn" onclick="setAsDifficulty(2)">⭐⭐ Moyen</button>
+        <button id="asDiff3Btn" onclick="setAsDifficulty(3)">⭐⭐⭐ Difficile</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Type de calcul">
+        <button id="asTypeClassicBtn" class="active" onclick="setAsQuestionType('classic')">Classique</button>
+        <button id="asTypeHoleBtn" onclick="setAsQuestionType('hole')">À trous</button>
+        <button id="asTypeBothBtn" onclick="setAsQuestionType('both')">🔀 Les deux</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Mode de saisie">
+        <button id="asInputTypeBtn" class="active" onclick="setAsInputMode('type')">⌨️ Écrire</button>
+        <button id="asInputQcmBtn" onclick="setAsInputMode('qcm')">⚡ QCM</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="addSubGameView" class="hidden">
+    <div class="game-card" id="asQuestionCard">
+      <div class="progress-wrap">
+        <span id="asQuestionCounter">Calcul 1 / 10</span>
+        <span id="asNextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="asProgressFill" style="width: 10%"></div></div>
+
+      <div class="verb-header">
+        <span class="verb-badge" id="asBadge">Addition • Niveau Facile</span>
+        <button class="btn-icon" onclick="generateAsQuestion()">🔄 Autre calcul</button>
+      </div>
+
+      <div class="sentence-box" id="asEquationBox" style="font-size: 2rem; letter-spacing: 0.03em;">
+        125 + 43 = <span class="blank">?</span>
+      </div>
+
+      <div class="options-grid hidden" id="asOptionsGrid"></div>
+
+      <div class="typing-area" id="asTypingArea">
+        <div class="accent-bar" style="margin-top:2px;">
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('1')">1</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('2')">2</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('3')">3</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('4')">4</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('5')">5</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('6')">6</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('7')">7</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('8')">8</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('9')">9</button>
+          <button class="accent-btn" onmousedown="event.preventDefault()" onclick="appendAsDigit('0')">0</button>
+          <button class="accent-btn" style="width:auto; padding:0 10px;" onmousedown="event.preventDefault()" onclick="backspaceAsDigit()">⌫</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn-primary" id="submitAsBtn" onclick="submitAsAnswer()">Valider ✨</button>
+          <label class="toggle-adaptive" title="Valide automatiquement dès que le bon nombre est tapé">
+            <input type="checkbox" id="autoValidateAs" checked> ⚡ Validation auto
+          </label>
+        </div>
+      </div>
+
+      <div class="feedback-panel hidden" id="asFeedbackPanel">
+        <div class="feedback-title" id="asFeedbackTitle"></div>
+        <div id="asFeedbackSub" style="font-size:0.96rem;"></div>
+        <div id="asRewardUnlockBox" class="hidden"></div>
+        <div class="rule-tip hidden" id="asTipBox"></div>
+        <div class="action-row">
+          <button class="btn-primary" id="btnAsNext" onclick="nextAsQuestion()">Calcul suivant →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDSUB SUMMARY CARD -->
+    <div class="analysis-card hidden" id="asSummaryCard">
+      <h2>🎉 Bravo Alicia, série d'additions & soustractions terminée !</h2>
+      <p style="color:var(--muted); margin-top:4px;">Voici tes résultats en calcul en ligne :</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val" id="asSumScore">8/10</div><div class="lbl">Score d'Alicia</div></div>
+        <div class="kpi"><div class="val" id="asSumAcc">80%</div><div class="lbl">Réussite</div></div>
+        <div class="kpi"><div class="val" id="asSumCards">3/18</div><div class="lbl">Cartes Shakira</div></div>
+      </div>
+      <div id="asSumMistakesArea"></div>
+      <div class="action-row" style="margin-top:20px;">
+        <button class="btn-icon" onclick="switchView('album')">🎤 Voir mon Album Shakira</button>
+        <button class="btn-primary" onclick="startNewAsSeries()">Rejouer une série ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHAKIRA COLLECTOR ALBUM VIEW -->
+  <div id="albumView" class="hidden">
+    <div class="analysis-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h2>🎤 L'Album Collector Shakira d'Alicia</h2>
+          <p style="color:#86198f; font-size:0.92rem; font-weight:600;">Débloque une nouvelle photo collector de Shakira toutes les 8 bonnes réponses !</p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn-icon" onclick="resetAlbum()">🗑️ Réinitialiser l'album</button>
+          <button class="btn-primary" onclick="switchView('game')">Retour au jeu ✨</button>
+        </div>
+      </div>
+
+      <div class="album-grid" id="albumGrid"></div>
+    </div>
+  </div>
+
+  <!-- REAL-TIME ANALYSIS VIEW -->
+  <div id="analysisView" class="hidden">
+    <div class="analysis-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h2>📊 Les super progrès d'Alicia</h2>
+          <p style="color:var(--muted); font-size:0.9rem;">Le jeu s'adapte tout seul pour t'aider à devenir imbattable !</p>
+        </div>
+        <button class="btn-icon" onclick="resetAnalytics()">🗑️ Remettre à zéro</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi"><div class="val" id="anaTotal">0</div><div class="lbl">Questions jouées</div></div>
+        <div class="kpi"><div class="val" id="anaRate">—</div><div class="lbl">Taux de réussite</div></div>
+        <div class="kpi"><div class="val" id="anaActiveWeak">0</div><div class="lbl">Verbes à retravailler</div></div>
+      </div>
+
+      <h3 style="font-size:1rem; margin-bottom:8px;">Suivi des astuces (2 bonnes réponses d'affilée = validé !)</h3>
+      <div class="weakness-list" id="weaknessList">
+        <p style="color:var(--muted); font-size:0.92rem;">Aucune erreur pour l'instant, tu démarres comme une championne !</p>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-primary" onclick="switchView('game')">Retour au jeu ✨</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 9 Illustrated Collector Stickers of Shakira (SVG Artworks)
+const SHAKIRA_CARDS = [
+  {
+    id: 1,
+    title: "Shakira sur Scène",
+    song: "« Waka Waka »",
+    desc: "Carte #1 — Concert mondial !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%202014%20(cropped).jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#db2777"/></linearGradient></defs><rect width="200" height="200" fill="url(#g1)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎤</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #1</text></svg>`
+  },
+  {
+    id: 2,
+    title: "Shakira Guitare Rock",
+    song: "« Whenever, Wherever »",
+    desc: "Carte #2 — Solo de guitare !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2007.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect width="200" height="200" fill="url(#g2)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎸</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #2</text></svg>`
+  },
+  {
+    id: 3,
+    title: "Shakira Superstar",
+    song: "« Try Everything »",
+    desc: "Carte #3 — Zootopie & magie !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%202011%2C%202.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g3)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌟</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #3</text></svg>`
+  },
+  {
+    id: 4,
+    title: "Shakira en Concert",
+    song: "« Hips Don't Lie »",
+    desc: "Carte #4 — Reine de la danse !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2001.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#eab308"/></linearGradient></defs><rect width="200" height="200" fill="url(#g4)"/><text x="100" y="105" text-anchor="middle" font-size="54">💃</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #4</text></svg>`
+  },
+  {
+    id: 5,
+    title: "Shakira Live Show",
+    song: "« La Bicicleta »",
+    desc: "Carte #5 — Énergie maximale !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2003.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs><rect width="200" height="200" fill="url(#g5)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎶</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #5</text></svg>`
+  },
+  {
+    id: 6,
+    title: "Shakira Soleil de Colombie",
+    song: "« Loca »",
+    desc: "Carte #6 — Sourire radieux !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20in%202011.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#fb923c"/></linearGradient></defs><rect width="200" height="200" fill="url(#g6)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌺</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #6</text></svg>`
+  },
+  {
+    id: 7,
+    title: "Shakira Étoile d'Argent",
+    song: "« She Wolf »",
+    desc: "Carte #7 — Édition brillante !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2005.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#312e81"/><stop offset="100%" stop-color="#6d28d9"/></linearGradient></defs><rect width="200" height="200" fill="url(#g7)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌙</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #7</text></svg>`
+  },
+  {
+    id: 8,
+    title: "Shakira Trophée d'Or",
+    song: "« Chantaje »",
+    desc: "Carte #8 — Grande gagnante !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%202014.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs><rect width="200" height="200" fill="url(#g8)"/><text x="100" y="105" text-anchor="middle" font-size="54">🏆</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #8</text></svg>`
+  },
+  {
+    id: 9,
+    title: "Shakira Rock in Rio",
+    song: "« Las de la Intuición »",
+    desc: "Carte #9 — Ambiance de feu !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2009.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g9)"/><text x="100" y="105" text-anchor="middle" font-size="54">🔥<text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #9</text></svg>`
+  },
+  {
+    id: 10,
+    title: "Shakira Tournée Mondiale",
+    song: "« Sale el Sol »",
+    desc: "Carte #10 — Rayon de soleil !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2002.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs><rect width="200" height="200" fill="url(#g10)"/><text x="100" y="105" text-anchor="middle" font-size="54">☀️</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #10</text></svg>`
+  },
+  {
+    id: 11,
+    title: "Shakira Harmonica & Guitare",
+    song: "« Te Dejo Madrid »",
+    desc: "Carte #11 — Multi-instrumentiste !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2004.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g11" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect width="200" height="200" fill="url(#g11)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎵</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #11</text></svg>`
+  },
+  {
+    id: 12,
+    title: "Shakira Scène Magique",
+    song: "« Gypsy »",
+    desc: "Carte #12 — Bohème chic !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2006.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g12" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g12)"/><text x="100" y="105" text-anchor="middle" font-size="54">✨</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #12</text></svg>`
+  },
+  {
+    id: 13,
+    title: "Shakira Public en Folie",
+    song: "« La Tortura »",
+    desc: "Carte #13 — Duo mythique !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2008.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g13" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e11d48"/><stop offset="100%" stop-color="#f97316"/></linearGradient></defs><rect width="200" height="200" fill="url(#g13)"/><text x="100" y="105" text-anchor="middle" font-size="54">💃</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #13</text></svg>`
+  },
+  {
+    id: 14,
+    title: "Shakira Festival Live",
+    song: "« Ojos Así »",
+    desc: "Carte #14 — Rythmes du monde !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2010.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g14" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><rect width="200" height="200" fill="url(#g14)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌍</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #14</text></svg>`
+  },
+  {
+    id: 15,
+    title: "Shakira Éclat de Rire",
+    song: "« Me Enamoré »",
+    desc: "Carte #15 — Bonne humeur !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20in%202011%20(2).jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g15" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#f43f5e"/></linearGradient></defs><rect width="200" height="200" fill="url(#g15)"/><text x="100" y="105" text-anchor="middle" font-size="54">💖</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #15</text></svg>`
+  },
+  {
+    id: 16,
+    title: "Shakira Gala Prestige",
+    song: "« Can't Remember to Forget You »",
+    desc: "Carte #16 — Tapis rouge !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%202011.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g16" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b91c1c"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><rect width="200" height="200" fill="url(#g16)"/><text x="100" y="105" text-anchor="middle" font-size="54">👑</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #16</text></svg>`
+  },
+  {
+    id: 17,
+    title: "Shakira Concert Géant",
+    song: "« Underneath Your Clothes »",
+    desc: "Carte #17 — Émotion pure !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2011.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g17" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="200" height="200" fill="url(#g17)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌠</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #17</text></svg>`
+  },
+  {
+    id: 18,
+    title: "Shakira Collector Diamant Alicia",
+    song: "« Super Légende Spéciale Alicia »",
+    desc: "Carte #18 — Album complet 100% !",
+    imgUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shakira%20-%20Rock%20in%20Rio%20Madrid%202010%20-%2012.jpg?width=500",
+    fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g18" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect width="200" height="200" fill="url(#g18)"/><text x="100" y="105" text-anchor="middle" font-size="54">💎</text><text x="100" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">BRAVO ALICIA !</text></svg>`
+  }
+];
+
+const ALICIA_CHEERS = [
+  "Alicia, tu es trop forte ! 🌟🔥",
+  "Bravo Alicia, excellent ! 👏✨",
+  "Quel talent Alicia ! Tu assures comme Shakira sur scène ! 🎤💖",
+  "Fantastique Alicia ! C'est un sans-faute magistral ! 🏆⭐",
+  "Waka Waka ! Bravo, c'est exactement ça, Alicia ! 💃🎶",
+  "Extraordinaire Alicia ! Ton cerveau brille comme une étoile ! ✨🚀",
+  "Incroyable Alicia ! Tu es une vraie championne ! 👑💫",
+  "Youpi Alicia ! Bravo, excellent travail ! 🎉💖",
+  "Trop forte Alicia ! Rien ne peut t'arrêter ! 🚀🌟",
+  "Magnifique Alicia ! Tu gères comme une pro ! 🎸✨"
+];
+
+const ALICIA_ENCOURAGE = [
+  "Pas de souci Alicia ! Regarde bien le tableau ci-dessous, tu vas y arriver la prochaine fois 💪✨",
+  "Presque Alicia ! C'était un piège malin, observe la bonne terminaison juste en dessous 👇🌟",
+  "Courage Alicia ! Même Shakira répète ses chansons avant le concert, regarde l'astuce 🎶💡",
+  "Bien essayé Alicia ! Retiens bien ce petit détail et tu vas cartonner au prochain tour 💖"
+];
+
+const VERBS = [
+  {
+    inf: "chanter", group: "1er groupe (-er)", tag: "terminaison",
+    forms: ["chante", "chantes", "chante", "chantons", "chantez", "chantent"],
+    rule: "Verbe régulier du 1er groupe : -e, -es, -e, -ons, -ez, -ent (on n'entend pas le -ent à la fin !).",
+    complements: ["le refrain de « Waka Waka » !", "sous la douche tous les matins.", "avec le micro devant le miroir.", "en chœur pendant le spectacle."],
+    traps: {
+      0: ["chantes", "chantent", "chantons"],
+      1: ["chante", "chantent", "chantez"],
+      2: ["chantes", "chantent", "chantons"],
+      3: ["chantont", "chantez", "chantent"],
+      4: ["chanter", "chanté", "chantons"],
+      5: ["chante", "chantont", "chantons"]
+    }
+  },
+  {
+    inf: "danser", group: "1er groupe (-er)", tag: "terminaison",
+    forms: ["danse", "danses", "danse", "dansons", "dansez", "dansent"],
+    rule: "Avec « tu », il y a toujours un « s » (tu danses). Avec « ils/elles », on écrit -ent (elles dansent).",
+    complements: ["sur la chorégraphie de Shakira !", "dans le salon avec beaucoup d'énergie.", "au rythme de la musique.", "pendant toute la fête."],
+    traps: {
+      0: ["danses", "dansent", "dansons"],
+      1: ["danse", "dansent", "dansez"],
+      2: ["danses", "dansent", "dansons"],
+      3: ["dansont", "dansez", "dansent"],
+      4: ["danser", "dansé", "dansons"],
+      5: ["danse", "dansont", "dansons"]
+    }
+  },
+  {
+    inf: "manger", group: "1er groupe (-ger)", tag: "g_ge",
+    forms: ["mange", "manges", "mange", "mangeons", "mangez", "mangent"],
+    rule: "Avec « nous », on ajoute un « e » après le « g » (nous mangeons) pour que ça fasse le son [j] et pas [g] !",
+    complements: ["une glace à la fraise.", "des crêpes au goûter.", "une salade de fruits frais.", "ensemble à la cantine."],
+    traps: {
+      0: ["manges", "mangent", "mangeons"],
+      1: ["mange", "mangent", "mangez"],
+      2: ["manges", "mangent", "mangeons"],
+      3: ["mangons", "mangeon", "mangez"],
+      4: ["mangeez", "manger", "mangeons"],
+      5: ["mange", "mangeont", "mangeons"]
+    }
+  },
+  {
+    inf: "voyager", group: "1er groupe (-ger)", tag: "g_ge",
+    forms: ["voyage", "voyages", "voyage", "voyageons", "voyagez", "voyagent"],
+    rule: "Comme manger, voyager garde le « e » après le « g » avec « nous » : nous voyageons.",
+    complements: ["en avion jusqu'en Colombie !", "avec nos valises roses.", "autour du monde en musique.", "en train pendant les vacances."],
+    traps: {
+      0: ["voyages", "voyagent", "voyageons"],
+      1: ["voyage", "voyagent", "voyagez"],
+      2: ["voyages", "voyagent", "voyageons"],
+      3: ["voyagons", "voyagon", "voyagez"],
+      4: ["voyageez", "voyager", "voyageons"],
+      5: ["voyage", "voyageont", "voyageons"]
+    }
+  },
+  {
+    inf: "commencer", group: "1er groupe (-cer)", tag: "c_cedille",
+    forms: ["commence", "commences", "commence", "commençons", "commencez", "commencent"],
+    rule: "Avec « nous », le « c » prend une petite cédille (ç) devant le « o » : nous commençons.",
+    complements: ["le concert par une chanson rythmée !", "nos devoirs juste après le goûter.", "le dessin avec des feutres brillants.", "la partie avec le sourire."],
+    traps: {
+      0: ["commences", "commençe", "commencent"],
+      1: ["commence", "commençes", "commencent"],
+      2: ["commences", "commençe", "commencent"],
+      3: ["commencons", "commencon", "commencez"],
+      4: ["commençez", "commencer", "commençons"],
+      5: ["commence", "commençent", "commençons"]
+    }
+  },
+  {
+    inf: "lancer", group: "1er groupe (-cer)", tag: "c_cedille",
+    forms: ["lance", "lances", "lance", "lançons", "lancez", "lancent"],
+    rule: "Devant -ons, le « c » devient « ç » : nous lançons (mais vous lancez, sans cédille !).",
+    complements: ["le ballon très haut dans le ciel.", "la musique à plein volume !", "les dés sur le plateau de jeu.", "des confettis dorés."],
+    traps: {
+      0: ["lances", "lançe", "lancent"],
+      1: ["lance", "lançes", "lancent"],
+      2: ["lances", "lançe", "lancent"],
+      3: ["lancons", "lancon", "lancez"],
+      4: ["lançez", "lancer", "lançons"],
+      5: ["lance", "lançent", "lançons"]
+    }
+  },
+  {
+    inf: "appeler", group: "1er groupe (-eler)", tag: "double_cons",
+    forms: ["appelle", "appelles", "appelle", "appelons", "appelez", "appellent"],
+    rule: "Appeler double le « l » quand on entend le son [è] (j'appelle, ils appellent), mais garde un seul « l » avec nous/vous (nous appelons).",
+    complements: ["nos meilleures copines au téléphone.", "le chaton pour lui donner ses croquettes.", "les spectateurs à applaudir !", "mamie pour lui raconter notre journée."],
+    traps: {
+      0: ["appele", "appelles", "appellent"],
+      1: ["appeles", "appelle", "appellent"],
+      2: ["appele", "appelles", "appellent"],
+      3: ["appellons", "appelon", "appelez"],
+      4: ["appellez", "appeler", "appelons"],
+      5: ["appelent", "appelle", "appellons"]
+    }
+  },
+  {
+    inf: "acheter", group: "1er groupe (-eter)", tag: "accent",
+    forms: ["achète", "achètes", "achète", "achetons", "achetez", "achètent"],
+    rule: "Acheter ne double pas le « t » : il prend un accent grave (è) : j'achète, mais nous achetons.",
+    complements: ["le nouvel album de Shakira !", "des autocollants pailletés.", "des fraises sucrées au marché.", "un joli carnet secret."],
+    traps: {
+      0: ["achette", "achete", "achètes"],
+      1: ["achettes", "achetes", "achète"],
+      2: ["achette", "achete", "achètes"],
+      3: ["achètons", "achettons", "achetez"],
+      4: ["achètez", "achettez", "achetons"],
+      5: ["achettent", "achetent", "achète"]
+    }
+  },
+  {
+    inf: "préférer", group: "1er groupe (-érer)", tag: "accent",
+    forms: ["préfère", "préfères", "préfère", "préférons", "préférez", "préfèrent"],
+    rule: "Le « é » devient « è » devant une fin muette (je préfère), mais reste « é » avec nous/vous (nous préférons).",
+    complements: ["les chansons qui donnent envie de danser !", "le chocolat au lait au chocolat noir.", "lire une BD avant de dormir.", "jouer dehors quand il fait beau."],
+    traps: {
+      0: ["préfére", "préfèrre", "préfères"],
+      1: ["préféres", "préfère", "préfèrent"],
+      2: ["préfére", "préfèrre", "préfères"],
+      3: ["préfèrons", "préférrons", "préférez"],
+      4: ["préfèrez", "préférons", "préférer"],
+      5: ["préférent", "préfèrrent", "préfère"]
+    }
+  },
+  {
+    inf: "nettoyer", group: "1er groupe (-oyer)", tag: "y_i",
+    forms: ["nettoie", "nettoies", "nettoie", "nettoyons", "nettoyez", "nettoient"],
+    rule: "Le « y » se transforme en « i » devant un « e » muet (je nettoie), mais reste « y » avec nous nettoyons / vous nettoyez.",
+    complements: ["les pinceaux après la peinture.", "la table du goûter.", "notre bureau bien rangé.", "nos baskets après le sport."],
+    traps: {
+      0: ["nettoye", "nettoies", "nettoient"],
+      1: ["nettoyes", "nettoie", "nettoient"],
+      2: ["nettoye", "nettoies", "nettoient"],
+      3: ["nettoions", "nettoyons", "nettoyez"],
+      4: ["nettoiez", "nettoyer", "nettoyons"],
+      5: ["nettoyent", "nettoie", "nettoions"]
+    }
+  },
+  {
+    inf: "finir", group: "2e groupe (-ir)", tag: "s_ss",
+    forms: ["finis", "finis", "finit", "finissons", "finissez", "finissent"],
+    rule: "Au 2e groupe, au pluriel, il y a toujours deux « s » (-issons, -issez, -issent) : nous finissons, ils finissent !",
+    complements: ["le spectacle sous les applaudissements !", "notre coloriage avec soin.", "le puzzle de 200 pièces.", "la course en souriant."],
+    traps: {
+      0: ["finit", "fini", "finissent"],
+      1: ["finit", "fini", "finissez"],
+      2: ["finis", "fini", "finissent"],
+      3: ["finisons", "finisson", "finissez"],
+      4: ["finisez", "finir", "finissons"],
+      5: ["finisent", "finit", "finisons"]
+    }
+  },
+  {
+    inf: "choisir", group: "2e groupe (-ir)", tag: "s_ss",
+    forms: ["choisis", "choisis", "choisit", "choisissons", "choisissez", "choisissent"],
+    rule: "Comme finir : -is, -is, -it au singulier et -issons, -issez, -issent (avec deux « s ») au pluriel.",
+    complements: ["la plus belle carte de Shakira !", "un livre d'aventures à la bibliothèque.", "une tenue brillante pour la fête.", "le parfum de la glace."],
+    traps: {
+      0: ["choisit", "choisi", "choisissent"],
+      1: ["choisit", "choisi", "choisissez"],
+      2: ["choisis", "choisi", "choisissent"],
+      3: ["choisisons", "choisisson", "choisissez"],
+      4: ["choisisez", "choisir", "choisissons"],
+      5: ["choisisent", "choisit", "choisisons"]
+    }
+  },
+  {
+    inf: "réussir", group: "2e groupe (-ir)", tag: "s_ss",
+    forms: ["réussis", "réussis", "réussit", "réussissons", "réussissez", "réussissent"],
+    rule: "Au pluriel, réussir s'écrit avec « ss » : nous réussissons, vous réussissez, ils réussissent.",
+    complements: ["tous les défis de conjugaison !", "le tour de magie du premier coup.", "le gâteau au chocolat.", "la chorégraphie sans erreur."],
+    traps: {
+      0: ["réussit", "réussi", "réussissent"],
+      1: ["réussit", "réussi", "réussissez"],
+      2: ["réussis", "réussi", "réussissent"],
+      3: ["réussisons", "réussisson", "réussissez"],
+      4: ["réussisez", "réussir", "réussissons"],
+      5: ["réussisent", "réussit", "réussisons"]
+    }
+  },
+  {
+    inf: "dire", group: "3e groupe", tag: "irreg_tes",
+    forms: ["dis", "dis", "dit", "disons", "dites", "disent"],
+    rule: "Piège célèbre : on dit « vous dites » (jamais *disez !) et « ils disent » avec un seul « s ».",
+    complements: ["bonjour avec un grand sourire.", "que cette chanson est géniale !", "merci à toute l'équipe.", "la bonne réponse du premier coup."],
+    traps: {
+      0: ["dit", "di", "disent"],
+      1: ["dit", "di", "dites"],
+      2: ["dis", "di", "disent"],
+      3: ["dissons", "dison", "dites"],
+      4: ["disez", "dissez", "disons"],
+      5: ["dissent", "dit", "dissons"]
+    }
+  },
+  {
+    inf: "faire", group: "3e groupe", tag: "irreg_tes",
+    forms: ["fais", "fais", "fait", "faisons", "faites", "font"],
+    rule: "Piège célèbre : on écrit « vous faites » (jamais *faisez !) et « ils font ».",
+    complements: ["un spectacle de danse dans le salon !", "des progrès incroyables en français.", "un dessin magnifique.", "de la gymnastique le mercredi."],
+    traps: {
+      0: ["fait", "fai", "font"],
+      1: ["fait", "fai", "faites"],
+      2: ["fais", "fai", "font"],
+      3: ["fesons", "faissons", "faites"],
+      4: ["faisez", "fesez", "faisons"],
+      5: ["faisent", "fait", "faisez"]
+    }
+  },
+  {
+    inf: "être", group: "3e groupe (auxiliaire)", tag: "irreg_tes",
+    forms: ["suis", "es", "est", "sommes", "êtes", "sont"],
+    rule: "Verbe être : je suis, tu es, il/elle est, nous sommes, vous êtes (avec un chapeau ^), ils/elles sont.",
+    complements: ["sur la scène !", "au premier rang pour le concert !", "dans la même équipe.", "en direct sur Internet !"],
+    traps: {
+      0: ["est", "es", "sont"],
+      1: ["est", "es", "êtes"],
+      2: ["es", "et", "sont"],
+      3: ["somes", "êtes", "sont"],
+      4: ["êtez", "etes", "sommes"],
+      5: ["son", "est", "sommes"]
+    }
+  },
+  {
+    inf: "avoir", group: "3e groupe (auxiliaire)", tag: "terminaison",
+    forms: ["ai", "as", "a", "avons", "avez", "ont"],
+    rule: "Attention : « il/elle a » (sans « t »), « tu as » (avec « s ») et « ils/elles ont » (sans « s » devant).",
+    complements: ["plein de cartes collector de Shakira !", "une super idée de jeu.", "hâte d'être à mercredi.", "un nouveau cartable."],
+    traps: {
+      0: ["as", "a", "ont"],
+      1: ["a", "à", "avez"],
+      2: ["as", "à", "at"],
+      3: ["avont", "avez", "ont"],
+      4: ["avé", "avons", "ont"],
+      5: ["on", "sont", "avons"]
+    }
+  },
+  {
+    inf: "aller", group: "3e groupe", tag: "terminaison",
+    forms: ["vais", "vas", "va", "allons", "allez", "vont"],
+    rule: "Je vais, tu vas, il/elle va (sans « s » !), nous allons, vous allez, ils/elles vont.",
+    complements: ["à l'école avec le sourire.", "voir un spectacle musical.", "au parc après les cours.", "à la piscine le samedi."],
+    traps: {
+      0: ["vas", "va", "vont"],
+      1: ["va", "vais", "allez"],
+      2: ["vas", "vais", "vont"],
+      3: ["alons", "allont", "allez"],
+      4: ["aler", "allons", "vont"],
+      5: ["von", "allent", "va"]
+    }
+  },
+  {
+    inf: "prendre", group: "3e groupe", tag: "double_cons",
+    forms: ["prends", "prends", "prend", "prenons", "prenez", "prennent"],
+    rule: "On garde le « d » au singulier (je prends, tu prends, il prend sans « s ») et on double le « n » avec ils/elles : ils prennent.",
+    complements: ["le micro pour chanter !", "des photos souvenir.", "le goûter dans le jardin.", "le temps de bien relire."],
+    traps: {
+      0: ["prend", "prent", "prennent"],
+      1: ["prend", "prent", "prenez"],
+      2: ["prends", "prent", "prennent"],
+      3: ["prennons", "prenon", "prenez"],
+      4: ["prennez", "prendre", "prenons"],
+      5: ["prenent", "prend", "prennons"]
+    }
+  },
+  {
+    inf: "venir", group: "3e groupe", tag: "double_cons",
+    forms: ["viens", "viens", "vient", "venons", "venez", "viennent"],
+    rule: "Je viens, tu viens, il vient (-s, -s, -t). Avec ils/elles, il y a deux « n » : ils viennent.",
+    complements: ["chanter sur scène avec Shakira !", "jouer à la maison cet après-midi.", "encourager toute l'équipe.", "avec des instruments de musique."],
+    traps: {
+      0: ["vient", "vien", "viennent"],
+      1: ["vient", "vien", "venez"],
+      2: ["viens", "vien", "viennent"],
+      3: ["vennons", "viennons", "venez"],
+      4: ["vennez", "venir", "venons"],
+      5: ["vienent", "vient", "vennons"]
+    }
+  },
+  {
+    inf: "pouvoir", group: "3e groupe", tag: "terminaison",
+    forms: ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"],
+    rule: "Avec « je » et « tu », pouvoir prend un « x » à la fin (je peux, tu peux), et un « t » avec il/elle (elle peut).",
+    complements: ["débloquer toutes les cartes Shakira !", "chanter le refrain par cœur.", "réussir cet exercice facilement.", "jouer encore une partie."],
+    traps: {
+      0: ["peut", "peus", "peuvent"],
+      1: ["peut", "peus", "pouvez"],
+      2: ["peux", "peus", "peuvent"],
+      3: ["pouvont", "pouvez", "peuvent"],
+      4: ["pouvé", "pouvoir", "pouvons"],
+      5: ["peuve", "peut", "pouvons"]
+    }
+  },
+  {
+    inf: "vouloir", group: "3e groupe", tag: "terminaison",
+    forms: ["veux", "veux", "veut", "voulons", "voulez", "veulent"],
+    rule: "Comme pouvoir : je veux, tu veux (avec « x »), il/elle veut (avec « t ») et ils veulent (un seul « l »).",
+    complements: ["collectionner les 18 photos de Shakira !", "apprendre à jouer de la guitare.", "faire un spectacle pour les parents.", "gagner la coupe d'or."],
+    traps: {
+      0: ["veut", "veus", "veulent"],
+      1: ["veut", "veus", "voulez"],
+      2: ["veux", "veus", "veulent"],
+      3: ["voulont", "voulez", "veulent"],
+      4: ["voulé", "vouloir", "voulons"],
+      5: ["veullent", "veut", "voulons"]
+    }
+  },
+  {
+    inf: "lire", group: "3e groupe", tag: "s_ss",
+    forms: ["lis", "lis", "lit", "lisons", "lisez", "lisent"],
+    rule: "Un seul « s » au pluriel : nous lisons, vous lisez, ils lisent (pas deux « s » !).",
+    complements: ["les paroles de la chanson.", "une histoire passionnante le soir.", "la consigne avant de répondre.", "un magazine sur la musique."],
+    traps: {
+      0: ["lit", "li", "lisent"],
+      1: ["lit", "li", "lisez"],
+      2: ["lis", "li", "lisent"],
+      3: ["lissons", "lison", "lisez"],
+      4: ["lissez", "lire", "lisons"],
+      5: ["lissent", "lit", "lissons"]
+    }
+  },
+  {
+    inf: "mettre", group: "3e groupe", tag: "double_cons",
+    forms: ["mets", "mets", "met", "mettons", "mettez", "mettent"],
+    rule: "Un seul « t » au singulier (je mets, tu mets, il met), mais deux « t » au pluriel (nous mettons, ils mettent).",
+    complements: ["la chanson de Shakira à fond !", "nos chaussures de danse.", "des paillettes sur le dessin.", "le casque audio sur les oreilles."],
+    traps: {
+      0: ["met", "metts", "mettent"],
+      1: ["met", "metts", "mettez"],
+      2: ["mets", "mett", "mettent"],
+      3: ["metons", "mettont", "mettez"],
+      4: ["metez", "mettre", "mettons"],
+      5: ["metent", "met", "metons"]
+    }
+  }
+];
+
+const SUBJECTS_BY_PERSON = {
+  0: [{ text: "Je", elide: "J'" }],
+  1: [{ text: "Tu" }],
+  2: [{ text: "Léa" }, { text: "Shakira" }, { text: "Elle" }, { text: "Il" }, { text: "On" }, { text: "Ma meilleure amie" }],
+  3: [{ text: "Nous" }, { text: "Léa et moi" }, { text: "Mes copines et moi" }],
+  4: [{ text: "Vous" }, { text: "Toi et Chloé" }, { text: "Les danseuses, vous" }],
+  5: [{ text: "Ils" }, { text: "Elles" }, { text: "Inès et Shakira" }, { text: "Les spectateurs" }, { text: "Mes copines" }]
+};
+
+const TAG_LABELS = {
+  "g_ge": "Lettre g / ge (nous mangeons)",
+  "c_cedille": "Cédille c / ç (nous commençons)",
+  "s_ss": "Un ou deux s (s / ss)",
+  "double_cons": "Doublement de consonne (ll, tt, nn)",
+  "irreg_tes": "Formes spéciales (vous dites, vous faites, vous êtes)",
+  "accent": "Accent é / è (j'achète, je préfère)",
+  "y_i": "Lettre y / i (je nettoie)",
+  "terminaison": "Terminaison de personne (-s, -t, -x, -e)"
+};
+
+// State
+let activeVerbs = [...VERBS];
+let selectedVerbInf = "ALL";
+let inputMode = "qcm";
+let currentQ = null;
+let answered = false;
+
+let seriesTotal = 10;
+let seriesIndex = 0;
+let seriesScore = 0;
+let streak = 0;
+let lastPopupStreak = 0;
+let bestStreak = 0;
+let seriesMistakes = [];
+
+// Rewards & Analytics state (saved in localStorage so Alicia keeps her cards!)
+let unlockedCardIds = [];
+let totalGoodAnswersEver = 0;
+
+let analytics = {
+  totalAttempts: 0,
+  totalCorrect: 0,
+  weaknesses: {},
+  remediationQueue: []
+};
+
+
+function renderCardMedia(card) {
+  const encodedSvg = encodeURIComponent(card.fallbackSvg);
+  return `<img src="${card.imgUrl}" alt="${card.title}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,${encodedSvg}';">`;
+}
+
+function openCardZoom(cardId) {
+  const card = SHAKIRA_CARDS.find(c => c.id === cardId);
+  if (!card) return;
+  const modal = document.getElementById("photoModal");
+  document.getElementById("modalMedia").innerHTML = renderCardMedia(card);
+  document.getElementById("modalTitle").textContent = card.title;
+  document.getElementById("modalSub").textContent = `${card.song} — ${card.desc}`;
+  modal.classList.remove("hidden");
+}
+
+function closeCardZoom() {
+  document.getElementById("photoModal").classList.add("hidden");
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("alicia_shakira_progress"));
+    if (saved) {
+      unlockedCardIds = saved.unlockedCardIds || [];
+      totalGoodAnswersEver = saved.totalGoodAnswersEver || 0;
+      if (saved.analytics) {
+        analytics.totalAttempts = saved.analytics.totalAttempts || 0;
+        analytics.totalCorrect = saved.analytics.totalCorrect || 0;
+        analytics.weaknesses = saved.analytics.weaknesses || {};
+      }
+    }
+  } catch (e) {}
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem("alicia_shakira_progress", JSON.stringify({
+      unlockedCardIds,
+      totalGoodAnswersEver,
+      analytics: {
+        totalAttempts: analytics.totalAttempts,
+        totalCorrect: analytics.totalCorrect,
+        weaknesses: analytics.weaknesses
+      }
+    }));
+  } catch (e) {}
+}
+
+function init() {
+  loadProgress();
+  populateVerbSelect();
+  updateRewardHint();
+  startNewSeries(false);
+}
+
+function populateVerbSelect() {
+  const sel = document.getElementById("verbSelect");
+  const customOpt = sel.querySelector('option[value="CUSTOM"]');
+  sel.querySelectorAll("option[data-verb]").forEach(o => o.remove());
+
+  [...activeVerbs].sort((a,b) => a.inf.localeCompare(b.inf, 'fr')).forEach(v => {
+    const opt = document.createElement("option");
+    opt.value = v.inf;
+    opt.textContent = `Verbe : ${v.inf}`;
+    opt.setAttribute("data-verb", "1");
+    sel.insertBefore(opt, customOpt);
+  });
+}
+
+function handleVerbChange() {
+  const val = document.getElementById("verbSelect").value;
+  const customInp = document.getElementById("customVerbInput");
+  const customBtn = document.getElementById("customVerbBtn");
+
+  if (val === "CUSTOM") {
+    customInp.classList.remove("hidden");
+    customBtn.classList.remove("hidden");
+    customInp.focus();
+    return;
+  } else {
+    customInp.classList.add("hidden");
+    customBtn.classList.add("hidden");
+  }
+
+  selectedVerbInf = val;
+  generateQuestion(false);
+}
+
+function buildRegularVerb(infRaw) {
+  const inf = infRaw.trim().toLowerCase();
+  if (inf.length < 4) return null;
+  if (inf.endsWith("ger")) {
+    const stem = inf.slice(0, -2);
+    return {
+      inf, group: "1er groupe (-ger)", tag: "g_ge",
+      forms: [stem+"e", stem+"es", stem+"e", stem+"eons", stem+"ez", stem+"ent"],
+      rule: `Comme manger, ${inf} garde un « e » après le « g » avec « nous » : nous ${stem}eons.`,
+      complements: ["avec beaucoup d'enthousiasme !", "chaque jour après l'école.", "avec nos meilleures amies.", "en écoutant de la musique."],
+      traps: {
+        0: [stem+"es", stem+"ent", stem+"eons"],
+        1: [stem+"e", stem+"ent", stem+"ez"],
+        2: [stem+"es", stem+"ent", stem+"eons"],
+        3: [stem+"ons", stem+"on", stem+"ez"],
+        4: [stem+"eez", inf, stem+"eons"],
+        5: [stem+"e", stem+"eont", stem+"eons"]
+      }
+    };
+  }
+  if (inf.endsWith("cer")) {
+    const stem = inf.slice(0, -3);
+    return {
+      inf, group: "1er groupe (-cer)", tag: "c_cedille",
+      forms: [stem+"ce", stem+"ces", stem+"ce", stem+"çons", stem+"cez", stem+"cent"],
+      rule: `Comme commencer, ${inf} prend une cédille (ç) avec « nous » : nous ${stem}çons.`,
+      complements: ["avec soin et précision.", "tous les jours de la semaine.", "devant tout le groupe.", "avec le sourire !"],
+      traps: {
+        0: [stem+"ces", stem+"çe", stem+"cent"],
+        1: [stem+"ce", stem+"çes", stem+"cent"],
+        2: [stem+"ces", stem+"çe", stem+"cent"],
+        3: [stem+"cons", stem+"con", stem+"cez"],
+        4: [stem+"çez", inf, stem+"çons"],
+        5: [stem+"ce", stem+"çent", stem+"çons"]
+      }
+    };
+  }
+  if (inf.endsWith("er")) {
+    const stem = inf.slice(0, -2);
+    return {
+      inf, group: "1er groupe (-er)", tag: "terminaison",
+      forms: [stem+"e", stem+"es", stem+"e", stem+"ons", stem+"ez", stem+"ent"],
+      rule: `Verbe régulier du 1er groupe : -e, -es, -e, -ons, -ez, -ent.`,
+      complements: ["avec beaucoup d'application.", "souvent le week-end.", "ensemble dans le salon.", "en chantant du Shakira !"],
+      traps: {
+        0: [stem+"es", stem+"ent", stem+"ons"],
+        1: [stem+"e", stem+"ent", stem+"ez"],
+        2: [stem+"es", stem+"ent", stem+"ons"],
+        3: [stem+"ont", stem+"ez", stem+"ent"],
+        4: [inf, stem+"é", stem+"ons"],
+        5: [stem+"e", stem+"ont", stem+"ons"]
+      }
+    };
+  }
+  if (inf.endsWith("ir")) {
+    const stem = inf.slice(0, -2);
+    return {
+      inf, group: "2e groupe (-ir)", tag: "s_ss",
+      forms: [stem+"is", stem+"is", stem+"it", stem+"issons", "issez".replace(/^/, stem), stem+"issent"],
+      rule: `Au 2e groupe, on met deux « s » au pluriel : -issons, -issez, -issent.`,
+      complements: ["rapidement la tâche.", "avec beaucoup de sérieux.", "chaque étape du projet.", "comme une vraie star !"],
+      traps: {
+        0: [stem+"it", stem+"i", stem+"issent"],
+        1: [stem+"it", stem+"i", stem+"issez"],
+        2: [stem+"is", stem+"i", stem+"issent"],
+        3: [stem+"isons", stem+"isson", stem+"issez"],
+        4: [stem+"isez", inf, stem+"issons"],
+        5: [stem+"isent", stem+"it", stem+"isons"]
+      }
+    };
+  }
+  return null;
+}
+
+function applyCustomVerb() {
+  const inp = document.getElementById("customVerbInput");
+  const raw = inp.value.trim().toLowerCase();
+  if (!raw) return;
+
+  let existing = activeVerbs.find(v => v.inf === raw);
+  if (!existing) {
+    existing = buildRegularVerb(raw);
+    if (!existing) {
+      alert("Écris un verbe à l'infinitif en -er ou -ir (ex: rigoler, sauter, grandir).");
+      return;
+    }
+    activeVerbs.push(existing);
+    populateVerbSelect();
+  }
+
+  document.getElementById("verbSelect").value = existing.inf;
+  document.getElementById("customVerbInput").classList.add("hidden");
+  document.getElementById("customVerbBtn").classList.add("hidden");
+  selectedVerbInf = existing.inf;
+  generateQuestion(false);
+}
+
+function setInputMode(mode) {
+  inputMode = mode;
+  document.getElementById("modeQcmBtn").classList.toggle("active", mode === "qcm");
+  document.getElementById("modeTypeBtn").classList.toggle("active", mode === "type");
+  if (!answered && currentQ) {
+    renderAnswerControls();
+  }
+}
+
+function insertChar(ch) {
+  const inp = document.getElementById("typeInput");
+  const start = inp.selectionStart || inp.value.length;
+  const end = inp.selectionEnd || inp.value.length;
+  inp.value = inp.value.slice(0, start) + ch + inp.value.slice(end);
+  inp.focus();
+  inp.setSelectionRange(start + 1, start + 1);
+}
+
+function startNewSeries(weakOnly) {
+  seriesIndex = 0;
+  seriesScore = 0;
+  bestStreak = 0;
+  seriesMistakes = [];
+  document.getElementById("summaryCard").classList.add("hidden");
+  document.getElementById("questionCard").classList.remove("hidden");
+
+  if (weakOnly) {
+    document.getElementById("verbSelect").value = "WEAK";
+    selectedVerbInf = "WEAK";
+  }
+  updateHeaderStats();
+  generateQuestion(false);
+}
+
+function pickNextVerbAndPerson(keepSameVerb) {
+  if (keepSameVerb && currentQ) {
+    let p = Math.floor(Math.random() * 6);
+    if (p === currentQ.personIdx) p = (p + 1) % 6;
+    return { verb: currentQ.verb, personIdx: p, isRemediation: currentQ.isRemediation };
+  }
+
+  const adaptiveOn = document.getElementById("adaptiveCheck").checked;
+
+  if (selectedVerbInf !== "ALL" && selectedVerbInf !== "WEAK") {
+    const v = activeVerbs.find(x => x.inf === selectedVerbInf) || activeVerbs[0];
+    return { verb: v, personIdx: Math.floor(Math.random() * 6), isRemediation: false };
+  }
+
+  analytics.remediationQueue.forEach(item => item.delay--);
+
+  if (adaptiveOn && analytics.remediationQueue.length > 0) {
+    const readyIdx = analytics.remediationQueue.findIndex(item => item.delay <= 0);
+    if (readyIdx !== -1) {
+      const item = analytics.remediationQueue.splice(readyIdx, 1)[0];
+      let targetVerb = activeVerbs.find(v => v.inf === item.verbInf);
+      if (Math.random() < 0.3) {
+        const cousins = activeVerbs.filter(v => v.tag === item.tag && v.inf !== item.verbInf);
+        if (cousins.length > 0) {
+          targetVerb = cousins[Math.floor(Math.random() * cousins.length)];
+        }
+      }
+      if (targetVerb) {
+        return { verb: targetVerb, personIdx: item.personIdx, isRemediation: true };
+      }
+    }
+  }
+
+  const activeWeakList = Object.values(analytics.weaknesses).filter(w => w.streakToHeal < 2);
+
+  if (selectedVerbInf === "WEAK" && activeWeakList.length > 0) {
+    const w = activeWeakList[Math.floor(Math.random() * activeWeakList.length)];
+    const pool = activeVerbs.filter(v => v.inf === w.verbInf || v.tag === w.tag);
+    const chosen = pool[Math.floor(Math.random() * pool.length)];
+    return { verb: chosen, personIdx: Math.floor(Math.random() * 6), isRemediation: true };
+  }
+
+  if (adaptiveOn && activeWeakList.length > 0 && Math.random() < 0.45) {
+    const w = activeWeakList[Math.floor(Math.random() * activeWeakList.length)];
+    const pool = activeVerbs.filter(v => v.tag === w.tag);
+    if (pool.length > 0) {
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      return { verb: chosen, personIdx: Math.floor(Math.random() * 6), isRemediation: true };
+    }
+  }
+
+  let pool = activeVerbs;
+  if (currentQ && pool.length > 1) {
+    pool = pool.filter(v => v.inf !== currentQ.verb.inf);
+  }
+  const verb = pool[Math.floor(Math.random() * pool.length)];
+  const weightedPersons = [0, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+  const personIdx = weightedPersons[Math.floor(Math.random() * weightedPersons.length)];
+  return { verb, personIdx, isRemediation: false };
+}
+
+function startsWithVowelOrSilentH(word) {
+  return /^[aeiouyàâéèêëîïôùûüœh]/i.test(word);
+}
+
+function generateQuestion(keepSameVerb) {
+  answered = false;
+  const { verb, personIdx, isRemediation } = pickNextVerbAndPerson(keepSameVerb);
+  const answer = verb.forms[personIdx];
+
+  const subjList = SUBJECTS_BY_PERSON[personIdx];
+  const subjObj = subjList[Math.floor(Math.random() * subjList.length)];
+  let subjectText = subjObj.text;
+  let elided = false;
+
+  if (personIdx === 0 && startsWithVowelOrSilentH(answer)) {
+    subjectText = "J'";
+    elided = true;
+  }
+
+  const complement = verb.complements[Math.floor(Math.random() * verb.complements.length)];
+
+  const rawTraps = (verb.traps && verb.traps[personIdx]) ? [...verb.traps[personIdx]] : [];
+  const otherForms = verb.forms.filter(f => f !== answer);
+  const candidates = [...new Set([...rawTraps, ...otherForms])].filter(c => c !== answer);
+  const distractors = candidates.slice(0, 3);
+  while (distractors.length < 3) {
+    distractors.push(answer + "s");
+  }
+
+  const options = shuffle([answer, ...distractors]);
+
+  currentQ = {
+    verb,
+    personIdx,
+    subjectText,
+    elided,
+    complement,
+    answer,
+    options,
+    isRemediation
+  };
+
+  renderQuestion();
+}
+
+const ANSWERS_PER_CARD = 8;
+
+function updateRewardHint() {
+  const hints = [document.getElementById("nextCardHint"), document.getElementById("mathNextCardHint"), document.getElementById("asNextCardHint")];
+  hints.forEach(hint => {
+    if (!hint) return;
+    if (unlockedCardIds.length >= SHAKIRA_CARDS.length) {
+      hint.textContent = `👑 Bravo Alicia ! Tu as collectionné les ${SHAKIRA_CARDS.length} cartes Shakira !`;
+      return;
+    }
+    const rem = ANSWERS_PER_CARD - (totalGoodAnswersEver % ANSWERS_PER_CARD);
+    hint.textContent = rem === 1
+      ? "🎁 Plus qu'1 bonne réponse pour débloquer une carte Shakira !"
+      : `🎁 Encore ${rem} bonnes réponses pour débloquer une carte Shakira !`;
+  });
+}
+
+function renderQuestion() {
+  document.getElementById("questionCounter").textContent = `Question ${seriesIndex + 1} / ${seriesTotal}`;
+  document.getElementById("progressFill").style.width = `${((seriesIndex + 1) / seriesTotal) * 100}%`;
+  updateRewardHint();
+
+  document.getElementById("verbBadge").textContent = `Verbe : ${currentQ.verb.inf} (${currentQ.verb.group})`;
+  document.getElementById("remediationTag").classList.toggle("hidden", !currentQ.isRemediation);
+
+  const spaceBefore = currentQ.elided ? "" : " ";
+  document.getElementById("sentenceBox").innerHTML =
+    `${currentQ.subjectText}${spaceBefore}<span class="blank" id="blankSlot">...</span> ${currentQ.complement}`;
+
+  document.getElementById("feedbackPanel").classList.add("hidden");
+  document.getElementById("rewardUnlockBox").classList.add("hidden");
+  document.getElementById("conjugationBox").classList.add("hidden");
+  document.getElementById("btnShowConj").classList.add("hidden");
+
+  renderAnswerControls();
+}
+
+
+function getSafePrefix(verb, personIdx) {
+  const inf = verb.inf;
+  if (inf === "manger" || inf === "voyager") return inf.slice(0, -3);
+  if (inf === "commencer" || inf === "lancer") return inf.slice(0, -3);
+  if (inf === "appeler") return "appel";
+  if (inf === "acheter" || inf === "préférer") return inf.slice(0, -3);
+  if (inf === "nettoyer") return "netto";
+  if (inf === "finir" || inf === "choisir" || inf === "réussir") return inf.slice(0, -2);
+  if (inf === "dire" || inf === "faire") return inf.slice(0, -3);
+  if (inf === "être") return ["", "", "", "som", "êt", "s"][personIdx];
+  if (inf === "avoir") return "";
+  if (inf === "aller") return personIdx <= 2 ? "" : "all";
+  if (inf === "prendre" || inf === "venir" || inf === "pouvoir" || inf === "vouloir") return inf.slice(0, -4);
+  if (inf === "lire") return "li";
+  if (inf === "mettre") return "met";
+  if (inf.endsWith("er") || inf.endsWith("ir")) return inf.slice(0, -2);
+  return "";
+}
+
+function onConjInlineInput() {
+  if (answered) return;
+  const inp = document.getElementById("typeInput");
+  if (!inp) return;
+  const prefix = currentQ.prefix || "";
+  inp.style.width = Math.max(95, (inp.value.length + 2) * 15) + "px";
+  const auto = document.getElementById("autoValidateConj");
+  if (auto && auto.checked) {
+    const val = (prefix + inp.value.trim()).toLowerCase();
+    if (val === currentQ.answer.toLowerCase()) {
+      evaluateAnswer(val);
+    }
+  }
+}
+
+function renderAnswerControls() {
+  const qcmEl = document.getElementById("optionsGrid");
+  const typeEl = document.getElementById("typingArea");
+  const sentenceBox = document.getElementById("sentenceBox");
+  const spaceBefore = currentQ.elided ? "" : " ";
+
+  if (inputMode === "qcm") {
+    qcmEl.classList.remove("hidden");
+    typeEl.classList.add("hidden");
+    sentenceBox.innerHTML = `${currentQ.subjectText}${spaceBefore}<span class="blank" id="blankSlot">...</span> ${currentQ.complement}`;
+    qcmEl.innerHTML = "";
+    currentQ.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.textContent = opt;
+      btn.onclick = () => evaluateAnswer(opt);
+      qcmEl.appendChild(btn);
+    });
+  } else {
+    qcmEl.classList.add("hidden");
+    typeEl.classList.remove("hidden");
+    const prefix = getSafePrefix(currentQ.verb, currentQ.personIdx);
+    currentQ.prefix = prefix;
+    const prefixHtml = prefix ? `<span style="color:#701a75; font-weight:800;">${prefix}</span>` : "";
+    const minW = prefix ? "95px" : "130px";
+    sentenceBox.innerHTML = `${currentQ.subjectText}${spaceBefore}<span style="display:inline-flex; align-items:baseline; white-space:nowrap;">${prefixHtml}<input type="text" id="typeInput" class="inline-input" style="min-width:${minW}; width:${minW}; margin-left:${prefix ? '1px' : '4px'};" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="..." oninput="onConjInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitTypedAnswer();}"></span> ${currentQ.complement}`;
+    const inp = document.getElementById("typeInput");
+    inp.value = "";
+    inp.disabled = false;
+    document.getElementById("submitTypeBtn").disabled = false;
+    setTimeout(() => inp.focus(), 30);
+  }
+}
+
+function submitTypedAnswer() {
+  if (answered) return;
+  const inp = document.getElementById("typeInput");
+  if (!inp) return;
+  const suffix = inp.value.trim();
+  if (!suffix) return;
+  const prefix = currentQ.prefix || "";
+  const val = (prefix + suffix).toLowerCase();
+  evaluateAnswer(val);
+}
+
+function diagnoseMistake(userAns, correctAns, verb) {
+  if (verb.tag === "c_cedille" && (userAns.includes("c") && !userAns.includes("ç"))) {
+    return "Oubli de la cédille (ç)";
+  }
+  if (verb.tag === "g_ge" && /g[oa]/.test(userAns)) {
+    return "Oubli du « e » après le g (geons)";
+  }
+  if (verb.tag === "irreg_tes" && /(disez|faisez|fesez|êtez)/.test(userAns)) {
+    return "Piège : forme spéciale en -tes";
+  }
+  if (verb.tag === "s_ss") {
+    return "Piège : 1 ou 2 « s » (s vs ss)";
+  }
+  if (verb.tag === "double_cons") {
+    return "Piège : lettre doublée (ll, tt, nn)";
+  }
+  if (verb.tag === "accent") {
+    return "Piège : accent (é / è)";
+  }
+  if (verb.tag === "y_i") {
+    return "Piège : y qui devient i";
+  }
+  return "Attention à la terminaison";
+}
+
+function checkAndUnlockCard() {
+  if (totalGoodAnswersEver > 0 && totalGoodAnswersEver % ANSWERS_PER_CARD === 0) {
+    const locked = SHAKIRA_CARDS.filter(c => !unlockedCardIds.includes(c.id));
+    if (locked.length > 0) {
+      const nextCard = locked[0];
+      unlockedCardIds.push(nextCard.id);
+      return nextCard;
+    }
+  }
+  return null;
+}
+
+function recordOutcome(isCorrect, userAns) {
+  analytics.totalAttempts++;
+  const v = currentQ.verb;
+  const weakKey = `${v.inf}__${v.tag}`;
+
+  if (isCorrect) {
+    analytics.totalCorrect++;
+    totalGoodAnswersEver++;
+    if (analytics.weaknesses[weakKey]) {
+      analytics.weaknesses[weakKey].streakToHeal++;
+    }
+    Object.values(analytics.weaknesses).forEach(w => {
+      if (w.tag === v.tag && w.streakToHeal < 2 && w.key !== weakKey) {
+        w.streakToHeal = Math.min(2, w.streakToHeal + 1);
+      }
+    });
+  } else {
+    const diagLabel = diagnoseMistake(userAns, currentQ.answer, v);
+    if (!analytics.weaknesses[weakKey]) {
+      analytics.weaknesses[weakKey] = {
+        key: weakKey,
+        verbInf: v.inf,
+        tag: v.tag,
+        tagLabel: TAG_LABELS[v.tag] || diagLabel,
+        lastDiag: diagLabel,
+        errors: 0,
+        streakToHeal: 0
+      };
+    }
+    analytics.weaknesses[weakKey].errors++;
+    analytics.weaknesses[weakKey].streakToHeal = 0;
+    analytics.weaknesses[weakKey].lastDiag = diagLabel;
+
+    analytics.remediationQueue.push({
+      verbInf: v.inf,
+      personIdx: currentQ.personIdx,
+      tag: v.tag,
+      delay: Math.floor(Math.random() * 2) + 1
+    });
+
+    seriesMistakes.push({
+      verb: v.inf,
+      subject: currentQ.subjectText,
+      userAns,
+      correctAns: currentQ.answer,
+      diag: diagLabel
+    });
+  }
+
+  const newlyUnlocked = isCorrect ? checkAndUnlockCard() : null;
+  saveProgress();
+  updateHeaderStats();
+  updateRewardHint();
+  return newlyUnlocked;
+}
+
+function evaluateAnswer(userAns) {
+  if (answered) return;
+  answered = true;
+
+  const isCorrect = userAns.toLowerCase() === currentQ.answer.toLowerCase();
+  const blank = document.getElementById("blankSlot");
+  if (blank) {
+    blank.textContent = currentQ.answer;
+    blank.classList.add(isCorrect ? "correct" : "wrong");
+  }
+
+  if (inputMode === "qcm") {
+    document.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.textContent === currentQ.answer) btn.classList.add("correct");
+      else if (btn.textContent === userAns && !isCorrect) btn.classList.add("wrong");
+    });
+  } else {
+    const inp = document.getElementById("typeInput");
+    if (inp) {
+      const prefix = currentQ.prefix || "";
+      const expectedSuffix = currentQ.answer.startsWith(prefix) ? currentQ.answer.slice(prefix.length) : currentQ.answer;
+      inp.value = expectedSuffix;
+      inp.style.width = Math.max(95, (expectedSuffix.length + 2) * 15) + "px";
+      inp.classList.add(isCorrect ? "correct" : "wrong");
+      inp.disabled = true;
+    }
+    document.getElementById("submitTypeBtn").disabled = true;
+  }
+
+  if (isCorrect) {
+    seriesScore++;
+    streak++;
+    if (streak > bestStreak) bestStreak = streak;
+  } else {
+    streak = 0;
+    lastPopupStreak = 0;
+  }
+
+  const newlyUnlocked = recordOutcome(isCorrect, userAns);
+  if (isCorrect) maybeShowShakiraStreakPopup(streak, newlyUnlocked);
+
+  const panel = document.getElementById("feedbackPanel");
+  const title = document.getElementById("feedbackTitle");
+  const sub = document.getElementById("feedbackSub");
+  const rewardBox = document.getElementById("rewardUnlockBox");
+  panel.classList.remove("hidden", "success", "error");
+
+  if (isCorrect) {
+    panel.classList.add("success");
+    const cheer = ALICIA_CHEERS[Math.floor(Math.random() * ALICIA_CHEERS.length)];
+    title.innerHTML = cheer;
+    sub.textContent = `« ${currentQ.subjectText}${currentQ.elided ? "" : " "}${currentQ.answer} ${currentQ.complement} »`;
+    document.getElementById("btnShowConj").classList.remove("hidden");
+
+    if (newlyUnlocked) {
+      rewardBox.className = "reward-unlock";
+      rewardBox.innerHTML = `
+        ${renderCardMedia(newlyUnlocked)}
+        <div>
+          <div style="font-size:0.82rem; font-weight:800; color:#d97706; text-transform:uppercase;">🎁 Nouvelle carte collector débloquée !</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#701a75;">${newlyUnlocked.title}</div>
+          <div style="font-size:0.88rem; color:#475569;">${newlyUnlocked.song} — ${newlyUnlocked.desc}</div>
+        </div>
+      `;
+    } else {
+      rewardBox.classList.add("hidden");
+    }
+  } else {
+    panel.classList.add("error");
+    rewardBox.classList.add("hidden");
+    const enc = ALICIA_ENCOURAGE[Math.floor(Math.random() * ALICIA_ENCOURAGE.length)];
+    const diag = diagnoseMistake(userAns, currentQ.answer, currentQ.verb);
+    title.innerHTML = `${enc} <span class="diag-badge">${diag}</span>`;
+    sub.innerHTML = `Tu as mis <strong>« ${escapeHtml(userAns)} »</strong>, et la bonne réponse est <strong>« ${currentQ.answer} »</strong>.`;
+    revealConjugation();
+  }
+
+  document.getElementById("btnNext").textContent =
+    (seriesIndex + 1 >= seriesTotal) ? "Voir mon bilan ✨" : "Question suivante →";
+}
+
+function revealConjugation() {
+  const box = document.getElementById("conjugationBox");
+  const grid = document.getElementById("conjGrid");
+  const tip = document.getElementById("ruleTip");
+  document.getElementById("btnShowConj").classList.add("hidden");
+
+  document.getElementById("conjBoxTitle").textContent =
+    `Tout le verbe « ${currentQ.verb.inf} » au présent`;
+
+  const pronouns = ["je", "tu", "il / elle", "nous", "vous", "ils / elles"];
+  grid.innerHTML = "";
+
+  currentQ.verb.forms.forEach((form, idx) => {
+    const div = document.createElement("div");
+    div.className = "conj-item" + (idx === currentQ.personIdx ? " highlight" : "");
+    let pText = pronouns[idx];
+    if (idx === 0 && startsWithVowelOrSilentH(form)) {
+      pText = "j'";
+    }
+    div.innerHTML = `<span>${pText}${pText === "j'" ? "" : " "}<strong>${form}</strong></span>`;
+    grid.appendChild(div);
+  });
+
+  tip.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> ${currentQ.verb.rule}`;
+  box.classList.remove("hidden");
+}
+
+function nextQuestion() {
+  seriesIndex++;
+  if (seriesIndex >= seriesTotal) {
+    showSeriesSummary();
+  } else {
+    generateQuestion(false);
+  }
+}
+
+function newExampleForCurrent() {
+  generateQuestion(true);
+}
+
+function showSeriesSummary() {
+  document.getElementById("questionCard").classList.add("hidden");
+  const sumCard = document.getElementById("summaryCard");
+  sumCard.classList.remove("hidden");
+
+  document.getElementById("sumScore").textContent = `${seriesScore}/${seriesTotal}`;
+  document.getElementById("sumAcc").textContent = `${Math.round((seriesScore / seriesTotal) * 100)}%`;
+  document.getElementById("sumCards").textContent = `${unlockedCardIds.length}/${SHAKIRA_CARDS.length}`;
+
+  const area = document.getElementById("sumMistakesArea");
+  const weakBtn = document.getElementById("btnPracticeWeak");
+
+  if (seriesMistakes.length === 0) {
+    area.innerHTML = `<div class="rule-tip" style="border-color:var(--success); background:var(--success-bg);">🌟 <strong>10/10 sans aucune faute !</strong> Alicia, tu es une vraie superstar de la conjugaison ! 🎤💖</div>`;
+    weakBtn.classList.add("hidden");
+  } else {
+    weakBtn.classList.remove("hidden");
+    let html = `<h3 style="font-size:1rem; margin-bottom:8px;">Les petits pièges à revoir (${seriesMistakes.length}) :</h3><div class="weakness-list">`;
+    seriesMistakes.forEach(m => {
+      html += `<div class="weakness-item">
+        <div><strong>${m.verb}</strong> (${m.subject} …) : <span style="color:var(--danger); text-decoration:line-through;">${escapeHtml(m.userAns)}</span> → <strong style="color:var(--success);">${m.correctAns}</strong></div>
+        <span class="diag-badge">${m.diag}</span>
+      </div>`;
+    });
+    html += `</div>`;
+    area.innerHTML = html;
+  }
+}
+
+function updateHeaderStats() {
+  document.getElementById("scoreVal").textContent = seriesScore;
+  document.getElementById("totalVal").textContent = seriesIndex + (answered ? 1 : 0);
+  document.getElementById("streakVal").textContent = streak;
+  document.getElementById("albumCountBadge").textContent = unlockedCardIds.length;
+}
+
+let currentSubject = "conj"; // 'conj' or 'math'
+
+function switchSubject(subj) {
+  currentSubject = subj;
+  document.getElementById("subjConjBtn").classList.toggle("active", subj === "conj");
+  document.getElementById("subjMathBtn").classList.toggle("active", subj === "math");
+  document.getElementById("subjAddSubBtn").classList.toggle("active", subj === "addsub");
+  switchView("game");
+  if (subj === "math" && !currentMathQ) {
+    initMathTablesUI();
+    startNewMathSeries();
+  } else if (subj === "addsub" && !currentAsQ) {
+    startNewAsSeries();
+  }
+}
+
+function switchView(target) {
+  const gameV = document.getElementById("gameView");
+  const mathGameV = document.getElementById("mathGameView");
+  const addSubGameV = document.getElementById("addSubGameView");
+  const albumV = document.getElementById("albumView");
+  const anaV = document.getElementById("analysisView");
+  const controls = document.getElementById("controlsBar");
+  const mathControls = document.getElementById("mathControlsBar");
+  const addSubControls = document.getElementById("addSubControlsBar");
+
+  const btnAlbum = document.getElementById("btnToggleAlbum");
+  const btnAna = document.getElementById("btnToggleAnalysis");
+
+  // Toggle back to game if clicking already active tab
+  if (target === "album" && !albumV.classList.contains("hidden")) target = "game";
+  if (target === "analysis" && !anaV.classList.contains("hidden")) target = "game";
+
+  const isGame = (target === "game");
+  gameV.classList.toggle("hidden", !(isGame && currentSubject === "conj"));
+  controls.classList.toggle("hidden", !(isGame && currentSubject === "conj"));
+  mathGameV.classList.toggle("hidden", !(isGame && currentSubject === "math"));
+  mathControls.classList.toggle("hidden", !(isGame && currentSubject === "math"));
+  addSubGameV.classList.toggle("hidden", !(isGame && currentSubject === "addsub"));
+  addSubControls.classList.toggle("hidden", !(isGame && currentSubject === "addsub"));
+
+  albumV.classList.toggle("hidden", target !== "album");
+  anaV.classList.toggle("hidden", target !== "analysis");
+
+  btnAlbum.classList.toggle("active", target === "album");
+  btnAna.classList.toggle("active", target === "analysis");
+
+  if (target === "album") renderAlbum();
+  if (target === "analysis") renderAnalysisPanel();
+}
+
+function renderAlbum() {
+  const grid = document.getElementById("albumGrid");
+  grid.innerHTML = "";
+
+  SHAKIRA_CARDS.forEach(card => {
+    const isUnlocked = unlockedCardIds.includes(card.id);
+    const div = document.createElement("div");
+    div.className = "sticker-card " + (isUnlocked ? "unlocked" : "locked");
+
+    if (isUnlocked) {
+      div.style.cursor = "pointer";
+      div.title = "Clique pour agrandir la photo de Shakira !";
+      div.onclick = () => openCardZoom(card.id);
+      div.innerHTML = `
+        <div class="sticker-art">${renderCardMedia(card)}</div>
+        <div class="sticker-title">${card.title}</div>
+        <div class="sticker-sub">${card.song} • 🔍 Agrandir</div>
+      `;
+    } else {
+      div.innerHTML = `
+        <div class="sticker-art" style="flex-direction:column; gap:4px;">
+          <span style="font-size:2rem;">🔒</span>
+          <span style="font-size:0.75rem; font-weight:700; color:#64748b;">Carte #${card.id}</span>
+        </div>
+        <div class="sticker-title">Carte mystère</div>
+        <div class="sticker-sub">Continue de jouer pour la gagner !</div>
+      `;
+    }
+    grid.appendChild(div);
+  });
+}
+
+function renderAnalysisPanel() {
+  document.getElementById("anaTotal").textContent = analytics.totalAttempts;
+  const rate = analytics.totalAttempts > 0
+    ? Math.round((analytics.totalCorrect / analytics.totalAttempts) * 100) + "%"
+    : "—";
+  document.getElementById("anaRate").textContent = rate;
+
+  const list = Object.values(analytics.weaknesses).sort((a, b) => b.errors - a.errors);
+  const activeCount = list.filter(w => w.streakToHeal < 2).length;
+  document.getElementById("anaActiveWeak").textContent = activeCount;
+
+  const container = document.getElementById("weaknessList");
+  if (list.length === 0) {
+    container.innerHTML = `<p style="color:var(--muted); font-size:0.92rem;">Aucune erreur enregistrée pour l'instant, tu démarres comme une championne !</p>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  list.forEach(w => {
+    const healed = w.streakToHeal >= 2;
+    const item = document.createElement("div");
+    item.className = "weakness-item";
+    item.innerHTML = `
+      <div>
+        <div style="font-weight:700;">Verbe : ${w.verbInf} — <span style="color:var(--primary);">${w.tagLabel}</span></div>
+        <div style="font-size:0.84rem; color:var(--muted);">${w.errors} erreur(s) • Astuce : ${w.lastDiag}</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:0.82rem; font-weight:700; color:${healed ? 'var(--success)' : 'var(--muted)'};">
+          ${healed ? '✅ Maîtrisé !' : `Progression ${w.streakToHeal}/2`}
+        </span>
+        <div class="mastery-pills">
+          <span class="dot ${w.streakToHeal >= 1 ? 'filled' : ''}"></span>
+          <span class="dot ${w.streakToHeal >= 2 ? 'filled' : ''}"></span>
+        </div>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+
+function resetAlbum() {
+  if (confirm("Veux-tu vraiment vider ton album Shakira et recommencer à zéro ?")) {
+    unlockedCardIds = [];
+    totalGoodAnswersEver = 0;
+    saveProgress();
+    updateRewardHint();
+    renderAlbum();
+    updateHeaderStats();
+  }
+}
+
+function resetAnalytics() {
+  analytics = { totalAttempts: 0, totalCorrect: 0, weaknesses: {}, remediationQueue: [] };
+  saveProgress();
+  updateHeaderStats();
+  renderAnalysisPanel();
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+}
+
+
+// ==========================================
+// MULTIPLICATION TABLES GAME LOGIC
+// ==========================================
+let mathTableMode = "mix"; // 'mix' or 'select'
+let mathQuestionType = "classic"; // 'classic', 'hole', or 'both'
+let mathInputMode = "type"; // 'type' or 'qcm'
+let selectedTables = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+let currentMathQ = null;
+let mathAnswered = false;
+
+function setMathInputMode(mode) {
+  mathInputMode = mode;
+  document.getElementById("mathInputTypeBtn").classList.toggle("active", mode === "type");
+  document.getElementById("mathInputQcmBtn").classList.toggle("active", mode === "qcm");
+  if (!mathAnswered && currentMathQ) {
+    renderMathQuestion();
+  }
+}
+
+let mathSeriesTotal = 10;
+let mathSeriesIndex = 0;
+let mathSeriesScore = 0;
+let mathSeriesMistakes = [];
+
+function initMathTablesUI() {
+  const container = document.getElementById("tablePillsContainer");
+  if (!container || container.children.length > 0) return;
+  for (let t = 2; t <= 10; t++) {
+    const btn = document.createElement("button");
+    btn.className = "btn-tab active";
+    btn.style.padding = "5px 12px";
+    btn.style.fontSize = "0.85rem";
+    btn.textContent = `Table de ${t}`;
+    btn.dataset.table = t;
+    btn.onclick = () => toggleTableSelection(t, btn);
+    container.appendChild(btn);
+  }
+}
+
+function toggleTableSelection(t, btn) {
+  if (selectedTables.includes(t)) {
+    if (selectedTables.length === 1) {
+      alert("Garde au moins une table sélectionnée !");
+      return;
+    }
+    selectedTables = selectedTables.filter(x => x !== t);
+    btn.classList.remove("active");
+  } else {
+    selectedTables.push(t);
+    btn.classList.add("active");
+  }
+  generateMathQuestion();
+}
+
+function setMathTableMode(mode) {
+  mathTableMode = mode;
+  document.getElementById("mathModeMixBtn").classList.toggle("active", mode === "mix");
+  document.getElementById("mathModeSelectBtn").classList.toggle("active", mode === "select");
+  const area = document.getElementById("tableCheckboxesArea");
+  area.classList.toggle("hidden", mode !== "select");
+  if (mode === "select") initMathTablesUI();
+  generateMathQuestion();
+}
+
+function setMathQuestionType(type) {
+  mathQuestionType = type;
+  document.getElementById("mathTypeClassicBtn").classList.toggle("active", type === "classic");
+  document.getElementById("mathTypeHoleBtn").classList.toggle("active", type === "hole");
+  document.getElementById("mathTypeBothBtn").classList.toggle("active", type === "both");
+  generateMathQuestion();
+}
+
+function startNewMathSeries() {
+  mathSeriesIndex = 0;
+  mathSeriesScore = 0;
+  mathSeriesMistakes = [];
+  document.getElementById("mathSummaryCard").classList.add("hidden");
+  document.getElementById("mathQuestionCard").classList.remove("hidden");
+  generateMathQuestion();
+}
+
+function generateMathQuestion() {
+  mathAnswered = false;
+  const pool = (mathTableMode === "mix") ? [2, 3, 4, 5, 6, 7, 8, 9, 10] : selectedTables;
+  const table = pool[Math.floor(Math.random() * pool.length)];
+  const multiplier = Math.floor(Math.random() * 9) + 2; // 2 to 10
+  const product = table * multiplier;
+
+  // Decide order (a x b) randomly so it's varied
+  const swap = Math.random() < 0.5;
+  const a = swap ? multiplier : table;
+  const b = swap ? table : multiplier;
+
+  let qType = mathQuestionType;
+  if (qType === "both") {
+    qType = Math.random() < 0.5 ? "classic" : "hole";
+  }
+
+  let holePos = "result"; // 'result', 'first', or 'second'
+  let answer = product;
+  if (qType === "hole") {
+    if (Math.random() < 0.5) {
+      holePos = "first";
+      answer = a;
+    } else {
+      holePos = "second";
+      answer = b;
+    }
+  }
+
+  currentMathQ = {
+    table,
+    a,
+    b,
+    product,
+    holePos,
+    answer
+  };
+
+  renderMathQuestion();
+}
+
+function onMathInlineInput() {
+  if (mathAnswered) return;
+  const inp = document.getElementById("mathTypeInput");
+  if (!inp) return;
+  // Keep only digits
+  inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 3);
+  const auto = document.getElementById("autoValidateMath");
+  if (auto && auto.checked && inp.value !== "") {
+    const val = parseInt(inp.value, 10);
+    if (val === currentMathQ.answer) {
+      evaluateMathAnswer(val);
+    }
+  }
+}
+
+function generateMathOptions(q) {
+  const ans = q.answer;
+  const set = new Set([ans]);
+  const candidates = [
+    ans + q.table,
+    Math.max(1, ans - q.table),
+    ans + 1,
+    Math.max(1, ans - 1),
+    ans + 2,
+    Math.max(2, ans - 2),
+    ans + 10,
+    Math.max(1, ans - 10)
+  ];
+  for (const c of shuffle(candidates)) {
+    if (set.size >= 4) break;
+    if (c > 0 && c !== ans) set.add(c);
+  }
+  return shuffle([...set]);
+}
+
+function renderMathQuestion() {
+  document.getElementById("mathQuestionCounter").textContent = `Calcul ${mathSeriesIndex + 1} / ${mathSeriesTotal}`;
+  document.getElementById("mathProgressFill").style.width = `${((mathSeriesIndex + 1) / mathSeriesTotal) * 100}%`;
+  updateRewardHint();
+
+  document.getElementById("mathBadge").textContent =
+    currentMathQ.holePos === "result" ? `Table de ${currentMathQ.table} • Multiplication` : `Table de ${currentMathQ.table} • Multiplication à trou`;
+
+  const eqBox = document.getElementById("mathEquationBox");
+  const qcmGrid = document.getElementById("mathOptionsGrid");
+  const typeArea = document.getElementById("mathTypingArea");
+
+  document.getElementById("mathFeedbackPanel").classList.add("hidden");
+  document.getElementById("mathRewardUnlockBox").classList.add("hidden");
+  document.getElementById("mathTipBox").classList.add("hidden");
+
+  if (mathInputMode === "qcm") {
+    qcmGrid.classList.remove("hidden");
+    typeArea.classList.add("hidden");
+    if (currentMathQ.holePos === "result") {
+      eqBox.innerHTML = `${currentMathQ.a} × ${currentMathQ.b} = <span class="blank" id="mathBlankSlot">?</span>`;
+    } else if (currentMathQ.holePos === "first") {
+      eqBox.innerHTML = `<span class="blank" id="mathBlankSlot">?</span> × ${currentMathQ.b} = ${currentMathQ.product}`;
+    } else {
+      eqBox.innerHTML = `${currentMathQ.a} × <span class="blank" id="mathBlankSlot">?</span> = ${currentMathQ.product}`;
+    }
+    const opts = generateMathOptions(currentMathQ);
+    qcmGrid.innerHTML = "";
+    opts.forEach(num => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.style.fontSize = "1.35rem";
+      btn.textContent = num;
+      btn.onclick = () => evaluateMathAnswer(num);
+      qcmGrid.appendChild(btn);
+    });
+  } else {
+    qcmGrid.classList.add("hidden");
+    typeArea.classList.remove("hidden");
+    const slotHtml = `<input type="text" inputmode="numeric" id="mathTypeInput" class="inline-input math-inline" autocomplete="off" placeholder="?" oninput="onMathInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitMathAnswer();}">`;
+    if (currentMathQ.holePos === "result") {
+      eqBox.innerHTML = `${currentMathQ.a} × ${currentMathQ.b} = ${slotHtml}`;
+    } else if (currentMathQ.holePos === "first") {
+      eqBox.innerHTML = `${slotHtml} × ${currentMathQ.b} = ${currentMathQ.product}`;
+    } else {
+      eqBox.innerHTML = `${currentMathQ.a} × ${slotHtml} = ${currentMathQ.product}`;
+    }
+    const inp = document.getElementById("mathTypeInput");
+    inp.value = "";
+    inp.disabled = false;
+    document.getElementById("submitMathBtn").disabled = false;
+    setTimeout(() => inp.focus(), 30);
+  }
+}
+
+function appendMathDigit(d) {
+  if (mathAnswered) return;
+  const inp = document.getElementById("mathTypeInput");
+  if (!inp) return;
+  if (inp.value.length < 3) {
+    inp.value += d;
+    onMathInlineInput();
+  }
+  inp.focus();
+}
+
+function backspaceMathDigit() {
+  if (mathAnswered) return;
+  const inp = document.getElementById("mathTypeInput");
+  if (!inp) return;
+  inp.value = inp.value.slice(0, -1);
+  inp.focus();
+}
+
+function submitMathAnswer() {
+  if (mathAnswered) return;
+  const inp = document.getElementById("mathTypeInput");
+  if (!inp) return;
+  const raw = inp.value.trim();
+  if (!raw) return;
+  const userNum = parseInt(raw, 10);
+  if (isNaN(userNum)) return;
+  evaluateMathAnswer(userNum);
+}
+
+function evaluateMathAnswer(userNum) {
+  if (mathAnswered) return;
+  mathAnswered = true;
+
+  const isCorrect = (userNum === currentMathQ.answer);
+  const blank = document.getElementById("mathBlankSlot");
+  if (blank) {
+    blank.textContent = currentMathQ.answer;
+    blank.classList.add(isCorrect ? "correct" : "wrong");
+  }
+
+  if (mathInputMode === "qcm") {
+    document.querySelectorAll("#mathOptionsGrid .option-btn").forEach(btn => {
+      btn.disabled = true;
+      const val = parseInt(btn.textContent, 10);
+      if (val === currentMathQ.answer) btn.classList.add("correct");
+      else if (val === userNum && !isCorrect) btn.classList.add("wrong");
+    });
+  } else {
+    const inp = document.getElementById("mathTypeInput");
+    if (inp) {
+      inp.value = currentMathQ.answer;
+      inp.classList.add(isCorrect ? "correct" : "wrong");
+      inp.disabled = true;
+    }
+    document.getElementById("submitMathBtn").disabled = true;
+  }
+
+  analytics.totalAttempts++;
+  let newlyUnlocked = null;
+
+  if (isCorrect) {
+    mathSeriesScore++;
+    streak++;
+    if (streak > bestStreak) bestStreak = streak;
+    analytics.totalCorrect++;
+    totalGoodAnswersEver++;
+    newlyUnlocked = checkAndUnlockCard();
+    maybeShowShakiraStreakPopup(streak, newlyUnlocked);
+  } else {
+    streak = 0;
+    lastPopupStreak = 0;
+    const eqStr = currentMathQ.holePos === "result"
+      ? `${currentMathQ.a} × ${currentMathQ.b} = ?`
+      : (currentMathQ.holePos === "first" ? `? × ${currentMathQ.b} = ${currentMathQ.product}` : `${currentMathQ.a} × ? = ${currentMathQ.product}`);
+    mathSeriesMistakes.push({
+      eq: eqStr,
+      userAns: userNum,
+      correctAns: currentMathQ.answer,
+      fullEq: `${currentMathQ.a} × ${currentMathQ.b} = ${currentMathQ.product}`
+    });
+  }
+
+  saveProgress();
+  updateHeaderStats();
+  updateRewardHint();
+
+  const panel = document.getElementById("mathFeedbackPanel");
+  const title = document.getElementById("mathFeedbackTitle");
+  const sub = document.getElementById("mathFeedbackSub");
+  const rewardBox = document.getElementById("mathRewardUnlockBox");
+  const tipBox = document.getElementById("mathTipBox");
+
+  panel.classList.remove("hidden", "success", "error");
+
+  if (isCorrect) {
+    panel.classList.add("success");
+    const cheer = ALICIA_CHEERS[Math.floor(Math.random() * ALICIA_CHEERS.length)];
+    title.innerHTML = cheer;
+    sub.innerHTML = `Super calcul : <strong>${currentMathQ.a} × ${currentMathQ.b} = ${currentMathQ.product}</strong> !`;
+
+    if (newlyUnlocked) {
+      rewardBox.className = "reward-unlock";
+      rewardBox.innerHTML = `
+        ${renderCardMedia(newlyUnlocked)}
+        <div>
+          <div style="font-size:0.82rem; font-weight:800; color:#d97706; text-transform:uppercase;">🎁 Nouvelle carte collector débloquée !</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#701a75;">${newlyUnlocked.title}</div>
+          <div style="font-size:0.88rem; color:#475569;">${newlyUnlocked.song} — ${newlyUnlocked.desc}</div>
+        </div>
+      `;
+    } else {
+      rewardBox.classList.add("hidden");
+    }
+  } else {
+    panel.classList.add("error");
+    rewardBox.classList.add("hidden");
+    const enc = ALICIA_ENCOURAGE[Math.floor(Math.random() * ALICIA_ENCOURAGE.length)];
+    title.innerHTML = enc;
+    sub.innerHTML = `Tu as écrit <strong>${userNum}</strong>, mais la bonne réponse était <strong>${currentMathQ.answer}</strong> (car <strong>${currentMathQ.a} × ${currentMathQ.b} = ${currentMathQ.product}</strong>).`;
+
+    tipBox.classList.remove("hidden");
+    if (currentMathQ.holePos !== "result") {
+      const known = currentMathQ.holePos === "first" ? currentMathQ.b : currentMathQ.a;
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> Cherche dans la table de <strong>${known}</strong> : « ${known} fois combien égale ${currentMathQ.product} ? » C'est ${known} × <strong>${currentMathQ.answer}</strong> = ${currentMathQ.product} !`;
+    } else {
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> ${currentMathQ.a} × ${currentMathQ.b}, c'est pareil que ${currentMathQ.b} × ${currentMathQ.a} = <strong>${currentMathQ.product}</strong> !`;
+    }
+  }
+
+  document.getElementById("btnMathNext").textContent =
+    (mathSeriesIndex + 1 >= mathSeriesTotal) ? "Voir mon bilan ✨" : "Calcul suivant →";
+}
+
+function nextMathQuestion() {
+  mathSeriesIndex++;
+  if (mathSeriesIndex >= mathSeriesTotal) {
+    showMathSeriesSummary();
+  } else {
+    generateMathQuestion();
+  }
+}
+
+function showMathSeriesSummary() {
+  document.getElementById("mathQuestionCard").classList.add("hidden");
+  const sumCard = document.getElementById("mathSummaryCard");
+  sumCard.classList.remove("hidden");
+
+  document.getElementById("mathSumScore").textContent = `${mathSeriesScore}/${mathSeriesTotal}`;
+  document.getElementById("mathSumAcc").textContent = `${Math.round((mathSeriesScore / mathSeriesTotal) * 100)}%`;
+  document.getElementById("mathSumCards").textContent = `${unlockedCardIds.length}/${SHAKIRA_CARDS.length}`;
+
+  const area = document.getElementById("mathSumMistakesArea");
+  if (mathSeriesMistakes.length === 0) {
+    area.innerHTML = `<div class="rule-tip" style="border-color:var(--success); background:var(--success-bg);">🌟 <strong>10/10 sans aucune faute !</strong> Alicia, tu es une vraie championne des tables de multiplication ! 🏆💖</div>`;
+  } else {
+    let html = `<h3 style="font-size:1rem; margin-bottom:8px;">Les calculs à retenir (${mathSeriesMistakes.length}) :</h3><div class="weakness-list">`;
+    mathSeriesMistakes.forEach(m => {
+      html += `<div class="weakness-item">
+        <div><strong>${m.eq}</strong> : tu as mis <span style="color:var(--danger); text-decoration:line-through;">${m.userAns}</span> → <strong style="color:var(--success);">${m.fullEq}</strong></div>
+      </div>`;
+    });
+    html += `</div>`;
+    area.innerHTML = html;
+  }
+}
+
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const streakPop = document.getElementById("shakiraStreakPopup");
+    if (streakPop && !streakPop.classList.contains("hidden")) {
+      e.preventDefault();
+      closeShakiraPopup();
+      return;
+    }
+    const modal = document.getElementById("photoModal");
+    if (modal && !modal.classList.contains("hidden")) {
+      closeCardZoom();
+      return;
+    }
+    if (currentSubject === "conj" && answered && !document.getElementById("gameView").classList.contains("hidden") && !document.getElementById("questionCard").classList.contains("hidden")) {
+      e.preventDefault();
+      nextQuestion();
+    } else if (currentSubject === "math" && mathAnswered && !document.getElementById("mathGameView").classList.contains("hidden") && !document.getElementById("mathQuestionCard").classList.contains("hidden")) {
+      e.preventDefault();
+      nextMathQuestion();
+    } else if (currentSubject === "addsub" && asAnswered && !document.getElementById("addSubGameView").classList.contains("hidden") && !document.getElementById("asQuestionCard").classList.contains("hidden")) {
+      e.preventDefault();
+      nextAsQuestion();
+    }
+  }
+});
+
+
+const SHAKIRA_STREAK_POPUPS = [
+  {
+    emoji: "🎤🔥",
+    title: "Alicia, tu es trop forte ! Waka Waka !",
+    msg: "Bravo, excellent ! Quelle série incroyable, tu assures exactement comme Shakira sur scène !",
+    ref: "🎶 Clin d'œil : « Waka Waka » — C'est ton moment de briller, Alicia !"
+  },
+  {
+    emoji: "🌟🦊",
+    title: "Bravo Alicia, excellent ! Try Everything !",
+    msg: "Tu essaies, tu réussis, tu cartonnes ! Gazelle de Zootopie serait super fière de toi !",
+    ref: "🎶 Clin d'œil : « Try Everything » (Zootopie) — Toujours aller plus loin !"
+  },
+  {
+    emoji: "💃✨",
+    title: "Tu es incroyable Alicia !",
+    msg: "Les chiffres et les verbes ne mentent pas : ton cerveau danse au rythme des bonnes réponses !",
+    ref: "🎶 Clin d'œil : « Hips Don't Lie » — Un rythme de championne !"
+  },
+  {
+    emoji: "🎸🌈",
+    title: "Fantastique Alicia ! Toujours gagnante !",
+    msg: "Alicia, tu es trop forte ! Peu importe la question, tu trouves la solution comme une vraie pro !",
+    ref: "🎶 Clin d'œil : « Whenever, Wherever » — Le solo de guitare de la victoire !"
+  },
+  {
+    emoji: "☀️🌺",
+    title: "Bravo, excellent travail Alicia !",
+    msg: "Un vrai rayon de soleil ! Quelle concentration, tu illumines tout l'écran avec cette série !",
+    ref: "🎶 Clin d'œil : « Sale el Sol » — Après l'effort, le soleil brille pour toi !"
+  },
+  {
+    emoji: "🚲🎶",
+    title: "Quel talent Alicia ! En route vers l'or !",
+    msg: "Tu avances à toute vitesse sans te tromper, même les pièges te font sourire !",
+    ref: "🎶 Clin d'œil : « La Bicicleta » — Tu pédales vers le 10/10 !"
+  },
+  {
+    emoji: "👑💎",
+    title: "Alicia, tu es une vraie superstar !",
+    msg: "Bravo, excellent ! Le public est debout et t'applaudit ! Continue sur cette lancée !",
+    ref: "🎶 Clin d'œil : « Las de la Intuición » — Ton intuition est imbattable !"
+  }
+];
+
+
+
+function maybeShowShakiraStreakPopup(currentStreak, justUnlockedCard) {
+  // Don't overlap if a collector card was just unlocked on this exact question
+  if (justUnlockedCard) return;
+  // Trigger at streak 3, 6, 9, 12... (and occasionally at 4 or 8 if not just shown)
+  if (currentStreak >= 3 && currentStreak !== lastPopupStreak && (currentStreak % 3 === 0 || (currentStreak === 5 && lastPopupStreak < 4))) {
+    lastPopupStreak = currentStreak;
+    const item = SHAKIRA_STREAK_POPUPS[Math.floor(Math.random() * SHAKIRA_STREAK_POPUPS.length)];
+    document.getElementById("shakiraPopupBadge").textContent = `🔥 ${currentStreak} bonnes réponses d'affilée !`;
+    document.getElementById("shakiraPopupEmoji").textContent = item.emoji;
+    document.getElementById("shakiraPopupTitle").textContent = item.title;
+    document.getElementById("shakiraPopupMsg").textContent = item.msg;
+    document.getElementById("shakiraPopupRef").textContent = item.ref;
+    document.getElementById("shakiraStreakPopup").classList.remove("hidden");
+  }
+}
+
+function closeShakiraPopup() {
+  document.getElementById("shakiraStreakPopup").classList.add("hidden");
+}
+
+
+// ==========================================
+// ADDITION & SUBTRACTION (0 TO 5000) LOGIC
+// ==========================================
+let asOperation = "both"; // 'both', 'add', 'sub'
+let asDifficulty = 1; // 1 (Facile), 2 (Moyen), 3 (Difficile)
+let asQuestionType = "classic"; // 'classic', 'hole', 'both'
+let asInputMode = "type"; // 'type' or 'qcm'
+let currentAsQ = null;
+let asAnswered = false;
+
+let asSeriesTotal = 10;
+let asSeriesIndex = 0;
+let asSeriesScore = 0;
+let asSeriesMistakes = [];
+
+function setAsOperation(op) {
+  asOperation = op;
+  document.getElementById("asOpBothBtn").classList.toggle("active", op === "both");
+  document.getElementById("asOpAddBtn").classList.toggle("active", op === "add");
+  document.getElementById("asOpSubBtn").classList.toggle("active", op === "sub");
+  generateAsQuestion();
+}
+
+function setAsDifficulty(diff) {
+  asDifficulty = diff;
+  document.getElementById("asDiff1Btn").classList.toggle("active", diff === 1);
+  document.getElementById("asDiff2Btn").classList.toggle("active", diff === 2);
+  document.getElementById("asDiff3Btn").classList.toggle("active", diff === 3);
+  generateAsQuestion();
+}
+
+function setAsQuestionType(type) {
+  asQuestionType = type;
+  document.getElementById("asTypeClassicBtn").classList.toggle("active", type === "classic");
+  document.getElementById("asTypeHoleBtn").classList.toggle("active", type === "hole");
+  document.getElementById("asTypeBothBtn").classList.toggle("active", type === "both");
+  generateAsQuestion();
+}
+
+function setAsInputMode(mode) {
+  asInputMode = mode;
+  document.getElementById("asInputTypeBtn").classList.toggle("active", mode === "type");
+  document.getElementById("asInputQcmBtn").classList.toggle("active", mode === "qcm");
+  if (!asAnswered && currentAsQ) {
+    renderAsQuestion();
+  }
+}
+
+function startNewAsSeries() {
+  asSeriesIndex = 0;
+  asSeriesScore = 0;
+  asSeriesMistakes = [];
+  document.getElementById("asSummaryCard").classList.add("hidden");
+  document.getElementById("asQuestionCard").classList.remove("hidden");
+  generateAsQuestion();
+}
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function hasAdditionCarry(a, b) {
+  while (a > 0 || b > 0) {
+    if ((a % 10) + (b % 10) >= 10) return true;
+    a = Math.floor(a / 10);
+    b = Math.floor(b / 10);
+  }
+  return false;
+}
+
+function hasSubtractionBorrow(a, b) {
+  // Assumes a >= b
+  while (a > 0 || b > 0) {
+    if ((a % 10) < (b % 10)) return true;
+    a = Math.floor(a / 10);
+    b = Math.floor(b / 10);
+  }
+  return false;
+}
+
+function generateAsQuestion() {
+  asAnswered = false;
+  const op = (asOperation === "both") ? (Math.random() < 0.5 ? "add" : "sub") : asOperation;
+  let a = 0, b = 0, result = 0;
+
+  if (op === "add") {
+    if (asDifficulty === 1) {
+      // Facile : 0 à 500, sans retenue ou nombres ronds simples
+      for (let tries = 0; tries < 50; tries++) {
+        a = randInt(10, 400);
+        b = randInt(5, 500 - a);
+        if (!hasAdditionCarry(a, b)) break;
+      }
+      result = a + b;
+    } else if (asDifficulty === 2) {
+      // Moyen : 0 à 1500, avec retenues modérées
+      a = randInt(45, 950);
+      b = randInt(25, 1500 - a);
+      result = a + b;
+    } else {
+      // Difficile : jusqu'à 5000, grands nombres avec retenues
+      a = randInt(350, 3800);
+      b = randInt(150, 5000 - a);
+      result = a + b;
+    }
+  } else {
+    // Subtraction: a - b = result (with a <= 5000 and result >= 0)
+    if (asDifficulty === 1) {
+      // Facile : 0 à 500, sans emprunt (retenue)
+      for (let tries = 0; tries < 50; tries++) {
+        a = randInt(25, 500);
+        b = randInt(5, a - 5);
+        if (!hasSubtractionBorrow(a, b)) break;
+      }
+      result = a - b;
+    } else if (asDifficulty === 2) {
+      // Moyen : 0 à 1500, avec emprunts
+      a = randInt(120, 1500);
+      b = randInt(25, a - 15);
+      result = a - b;
+    } else {
+      // Difficile : jusqu'à 5000, avec emprunts multiples (passages de dizaines/centaines/milliers)
+      a = randInt(800, 5000);
+      b = randInt(185, a - 50);
+      result = a - b;
+    }
+  }
+
+  let qType = asQuestionType;
+  if (qType === "both") {
+    qType = Math.random() < 0.5 ? "classic" : "hole";
+  }
+
+  let holePos = "result"; // 'result', 'first', or 'second'
+  let answer = result;
+  if (qType === "hole") {
+    if (Math.random() < 0.5) {
+      holePos = "first";
+      answer = a;
+    } else {
+      holePos = "second";
+      answer = b;
+    }
+  }
+
+  currentAsQ = {
+    op,
+    a,
+    b,
+    result,
+    holePos,
+    answer,
+    diff: asDifficulty
+  };
+
+  renderAsQuestion();
+}
+
+function onAsInlineInput() {
+  if (asAnswered) return;
+  const inp = document.getElementById("asTypeInput");
+  if (!inp) return;
+  inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4);
+  inp.style.width = Math.max(95, (inp.value.length + 2) * 18) + "px";
+  const auto = document.getElementById("autoValidateAs");
+  if (auto && auto.checked && inp.value !== "") {
+    const val = parseInt(inp.value, 10);
+    if (val === currentAsQ.answer) {
+      evaluateAsAnswer(val);
+    }
+  }
+}
+
+function generateAsOptions(q) {
+  const ans = q.answer;
+  const set = new Set([ans]);
+  const offsets = [1, -1, 2, -2, 10, -10, 20, -20, 100, -100, 11, -11];
+  for (const off of shuffle(offsets)) {
+    if (set.size >= 4) break;
+    const cand = ans + off;
+    if (cand >= 0 && cand <= 5000 && cand !== ans) {
+      set.add(cand);
+    }
+  }
+  while (set.size < 4) {
+    const r = randInt(Math.max(0, ans - 50), Math.min(5000, ans + 50));
+    if (r !== ans) set.add(r);
+  }
+  return shuffle([...set]);
+}
+
+function renderAsQuestion() {
+  document.getElementById("asQuestionCounter").textContent = `Calcul ${asSeriesIndex + 1} / ${asSeriesTotal}`;
+  document.getElementById("asProgressFill").style.width = `${((asSeriesIndex + 1) / asSeriesTotal) * 100}%`;
+  updateRewardHint();
+
+  const opLabel = currentAsQ.op === "add" ? "Addition" : "Soustraction";
+  const diffLabel = currentAsQ.diff === 1 ? "Facile" : (currentAsQ.diff === 2 ? "Moyen" : "Difficile");
+  const modeLabel = currentAsQ.holePos === "result" ? "En ligne" : "À trou";
+  document.getElementById("asBadge").textContent = `${opLabel} • Niveau ${diffLabel} (${modeLabel})`;
+
+  const symbol = currentAsQ.op === "add" ? "+" : "−";
+  const eqBox = document.getElementById("asEquationBox");
+  const qcmGrid = document.getElementById("asOptionsGrid");
+  const typeArea = document.getElementById("asTypingArea");
+
+  document.getElementById("asFeedbackPanel").classList.add("hidden");
+  document.getElementById("asRewardUnlockBox").classList.add("hidden");
+  document.getElementById("asTipBox").classList.add("hidden");
+
+  if (asInputMode === "qcm") {
+    qcmGrid.classList.remove("hidden");
+    typeArea.classList.add("hidden");
+    if (currentAsQ.holePos === "result") {
+      eqBox.innerHTML = `${currentAsQ.a} ${symbol} ${currentAsQ.b} = <span class="blank" id="asBlankSlot">?</span>`;
+    } else if (currentAsQ.holePos === "first") {
+      eqBox.innerHTML = `<span class="blank" id="asBlankSlot">?</span> ${symbol} ${currentAsQ.b} = ${currentAsQ.result}`;
+    } else {
+      eqBox.innerHTML = `${currentAsQ.a} ${symbol} <span class="blank" id="asBlankSlot">?</span> = ${currentAsQ.result}`;
+    }
+    const opts = generateAsOptions(currentAsQ);
+    qcmGrid.innerHTML = "";
+    opts.forEach(num => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.style.fontSize = "1.35rem";
+      btn.textContent = num;
+      btn.onclick = () => evaluateAsAnswer(num);
+      qcmGrid.appendChild(btn);
+    });
+  } else {
+    qcmGrid.classList.add("hidden");
+    typeArea.classList.remove("hidden");
+    const slotHtml = `<input type="text" inputmode="numeric" id="asTypeInput" class="inline-input math-inline" style="width:115px; min-width:95px;" autocomplete="off" placeholder="?" oninput="onAsInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitAsAnswer();}">`;
+    if (currentAsQ.holePos === "result") {
+      eqBox.innerHTML = `${currentAsQ.a} ${symbol} ${currentAsQ.b} = ${slotHtml}`;
+    } else if (currentAsQ.holePos === "first") {
+      eqBox.innerHTML = `${slotHtml} ${symbol} ${currentAsQ.b} = ${currentAsQ.result}`;
+    } else {
+      eqBox.innerHTML = `${currentAsQ.a} ${symbol} ${slotHtml} = ${currentAsQ.result}`;
+    }
+    const inp = document.getElementById("asTypeInput");
+    inp.value = "";
+    inp.disabled = false;
+    document.getElementById("submitAsBtn").disabled = false;
+    setTimeout(() => inp.focus(), 30);
+  }
+}
+
+function appendAsDigit(d) {
+  if (asAnswered) return;
+  const inp = document.getElementById("asTypeInput");
+  if (!inp) return;
+  if (inp.value.length < 4) {
+    inp.value += d;
+    onAsInlineInput();
+  }
+  inp.focus();
+}
+
+function backspaceAsDigit() {
+  if (asAnswered) return;
+  const inp = document.getElementById("asTypeInput");
+  if (!inp) return;
+  inp.value = inp.value.slice(0, -1);
+  inp.focus();
+}
+
+function submitAsAnswer() {
+  if (asAnswered) return;
+  const inp = document.getElementById("asTypeInput");
+  if (!inp) return;
+  const raw = inp.value.trim();
+  if (!raw) return;
+  const userNum = parseInt(raw, 10);
+  if (isNaN(userNum)) return;
+  evaluateAsAnswer(userNum);
+}
+
+function evaluateAsAnswer(userNum) {
+  if (asAnswered) return;
+  asAnswered = true;
+
+  const isCorrect = (userNum === currentAsQ.answer);
+  const symbol = currentAsQ.op === "add" ? "+" : "−";
+  const blank = document.getElementById("asBlankSlot");
+  if (blank) {
+    blank.textContent = currentAsQ.answer;
+    blank.classList.add(isCorrect ? "correct" : "wrong");
+  }
+
+  if (asInputMode === "qcm") {
+    document.querySelectorAll("#asOptionsGrid .option-btn").forEach(btn => {
+      btn.disabled = true;
+      const val = parseInt(btn.textContent, 10);
+      if (val === currentAsQ.answer) btn.classList.add("correct");
+      else if (val === userNum && !isCorrect) btn.classList.add("wrong");
+    });
+  } else {
+    const inp = document.getElementById("asTypeInput");
+    if (inp) {
+      inp.value = currentAsQ.answer;
+      inp.style.width = Math.max(95, (String(currentAsQ.answer).length + 2) * 18) + "px";
+      inp.classList.add(isCorrect ? "correct" : "wrong");
+      inp.disabled = true;
+    }
+    document.getElementById("submitAsBtn").disabled = true;
+  }
+
+  analytics.totalAttempts++;
+  let newlyUnlocked = null;
+
+  if (isCorrect) {
+    asSeriesScore++;
+    streak++;
+    if (streak > bestStreak) bestStreak = streak;
+    analytics.totalCorrect++;
+    totalGoodAnswersEver++;
+    newlyUnlocked = checkAndUnlockCard();
+    maybeShowShakiraStreakPopup(streak, newlyUnlocked);
+  } else {
+    streak = 0;
+    lastPopupStreak = 0;
+    const eqStr = currentAsQ.holePos === "result"
+      ? `${currentAsQ.a} ${symbol} ${currentAsQ.b} = ?`
+      : (currentAsQ.holePos === "first" ? `? ${symbol} ${currentAsQ.b} = ${currentAsQ.result}` : `${currentAsQ.a} ${symbol} ? = ${currentAsQ.result}`);
+    asSeriesMistakes.push({
+      eq: eqStr,
+      userAns: userNum,
+      correctAns: currentAsQ.answer,
+      fullEq: `${currentAsQ.a} ${symbol} ${currentAsQ.b} = ${currentAsQ.result}`
+    });
+  }
+
+  saveProgress();
+  updateHeaderStats();
+  updateRewardHint();
+
+  const panel = document.getElementById("asFeedbackPanel");
+  const title = document.getElementById("asFeedbackTitle");
+  const sub = document.getElementById("asFeedbackSub");
+  const rewardBox = document.getElementById("asRewardUnlockBox");
+  const tipBox = document.getElementById("asTipBox");
+
+  panel.classList.remove("hidden", "success", "error");
+
+  if (isCorrect) {
+    panel.classList.add("success");
+    const cheer = ALICIA_CHEERS[Math.floor(Math.random() * ALICIA_CHEERS.length)];
+    title.innerHTML = cheer;
+    sub.innerHTML = `Super calcul : <strong>${currentAsQ.a} ${symbol} ${currentAsQ.b} = ${currentAsQ.result}</strong> !`;
+
+    if (newlyUnlocked) {
+      rewardBox.className = "reward-unlock";
+      rewardBox.innerHTML = `
+        ${renderCardMedia(newlyUnlocked)}
+        <div>
+          <div style="font-size:0.82rem; font-weight:800; color:#d97706; text-transform:uppercase;">🎁 Nouvelle carte collector débloquée !</div>
+          <div style="font-size:1.12rem; font-weight:800; color:#701a75;">${newlyUnlocked.title}</div>
+          <div style="font-size:0.88rem; color:#475569;">${newlyUnlocked.song} — ${newlyUnlocked.desc}</div>
+        </div>
+      `;
+    } else {
+      rewardBox.classList.add("hidden");
+    }
+  } else {
+    panel.classList.add("error");
+    rewardBox.classList.add("hidden");
+    const enc = ALICIA_ENCOURAGE[Math.floor(Math.random() * ALICIA_ENCOURAGE.length)];
+    title.innerHTML = enc;
+    sub.innerHTML = `Tu as écrit <strong>${userNum}</strong>, mais la bonne réponse était <strong>${currentAsQ.answer}</strong> (car <strong>${currentAsQ.a} ${symbol} ${currentAsQ.b} = ${currentAsQ.result}</strong>).`;
+
+    tipBox.classList.remove("hidden");
+    if (currentAsQ.op === "add" && currentAsQ.holePos !== "result") {
+      const known = currentAsQ.holePos === "first" ? currentAsQ.b : currentAsQ.a;
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> Pour trouver le nombre manquant dans une addition à trou, fais une soustraction : <strong>${currentAsQ.result} − ${known} = ${currentAsQ.answer}</strong> !`;
+    } else if (currentAsQ.op === "sub" && currentAsQ.holePos === "first") {
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> Le premier nombre d'une soustraction est le plus grand ! Additionne les deux autres : <strong>${currentAsQ.result} + ${currentAsQ.b} = ${currentAsQ.answer}</strong> !`;
+    } else if (currentAsQ.op === "sub" && currentAsQ.holePos === "second") {
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> Pour savoir combien on a enlevé à ${currentAsQ.a}, fais <strong>${currentAsQ.a} − ${currentAsQ.result} = ${currentAsQ.answer}</strong> !`;
+    } else {
+      tipBox.innerHTML = `💡 <strong>Astuce pour Alicia :</strong> Calcule étape par étape : d'abord les unités, puis les dizaines, les centaines et les milliers !`;
+    }
+  }
+
+  document.getElementById("btnAsNext").textContent =
+    (asSeriesIndex + 1 >= asSeriesTotal) ? "Voir mon bilan ✨" : "Calcul suivant →";
+}
+
+function nextAsQuestion() {
+  asSeriesIndex++;
+  if (asSeriesIndex >= asSeriesTotal) {
+    showAsSeriesSummary();
+  } else {
+    generateAsQuestion();
+  }
+}
+
+function showAsSeriesSummary() {
+  document.getElementById("asQuestionCard").classList.add("hidden");
+  const sumCard = document.getElementById("asSummaryCard");
+  sumCard.classList.remove("hidden");
+
+  document.getElementById("asSumScore").textContent = `${asSeriesScore}/${asSeriesTotal}`;
+  document.getElementById("asSumAcc").textContent = `${Math.round((asSeriesScore / asSeriesTotal) * 100)}%`;
+  document.getElementById("asSumCards").textContent = `${unlockedCardIds.length}/${SHAKIRA_CARDS.length}`;
+
+  const area = document.getElementById("asSumMistakesArea");
+  if (asSeriesMistakes.length === 0) {
+    area.innerHTML = `<div class="rule-tip" style="border-color:var(--success); background:var(--success-bg);">🌟 <strong>10/10 sans aucune faute !</strong> Alicia, tu es une vraie championne du calcul mental ! 🏆💖</div>`;
+  } else {
+    let html = `<h3 style="font-size:1rem; margin-bottom:8px;">Les calculs à retenir (${asSeriesMistakes.length}) :</h3><div class="weakness-list">`;
+    asSeriesMistakes.forEach(m => {
+      html += `<div class="weakness-item">
+        <div><strong>${m.eq}</strong> : tu as mis <span style="color:var(--danger); text-decoration:line-through;">${m.userAns}</span> → <strong style="color:var(--success);">${m.fullEq}</strong></div>
+      </div>`;
+    });
+    html += `</div>`;
+    area.innerHTML = html;
+  }
+}
+
+init();
+</script>
+
+<div id="photoModal" class="photo-modal hidden" onclick="if(event.target===this) closeCardZoom()">
+  <div class="photo-modal-card">
+    <div id="modalMedia"></div>
+    <h3 id="modalTitle" style="color:#701a75; font-size:1.15rem;"></h3>
+    <p id="modalSub" style="color:#64748b; font-size:0.9rem; margin:4px 0 14px;"></p>
+    <button class="btn-primary" onclick="closeCardZoom()">Fermer ✨</button>
+  </div>
+</div>
+
+<div id="shakiraStreakPopup" class="shakira-popup-overlay hidden" onclick="if(event.target===this) closeShakiraPopup()">
+  <div class="shakira-popup-card">
+    <div class="shakira-popup-badge" id="shakiraPopupBadge">🔥 Série de 3 bonnes réponses !</div>
+    <div class="shakira-popup-emoji" id="shakiraPopupEmoji">🎤✨</div>
+    <div class="shakira-popup-title" id="shakiraPopupTitle">Waka Waka Alicia !</div>
+    <div class="shakira-popup-msg" id="shakiraPopupMsg">Tu enchaînes les bonnes réponses comme une vraie star !</div>
+    <div class="shakira-popup-ref" id="shakiraPopupRef">🎶 Référence Shakira : « Waka Waka (This Time for Africa) »</div>
+    <button class="btn-primary" onclick="closeShakiraPopup()" style="width:100%; font-size:1.02rem;">Continuer le show ! 🌟</button>
+  </div>
+</div>
+
+</body>
+
+</html>
