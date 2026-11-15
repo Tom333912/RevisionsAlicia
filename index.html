@@ -2,7 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Défis Alicia">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#c026d3">
+<link rel="apple-touch-icon" href="images/1.jpg">
 <title>Le Défi Présent d'Alicia ✨ — Spécial Shakira</title>
 <style>
   :root {
@@ -330,13 +336,13 @@
     justify-content: center;
   }
   .accent-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
     border: 1px solid #f0abfc;
     background: #fdf4ff;
     font-weight: 800;
-    font-size: 0.98rem;
+    font-size: 1.5rem;
     color: #86198f;
     cursor: pointer;
   }
@@ -760,6 +766,7 @@
       <div class="pill" title="Série de bonnes réponses">🔥 <span id="streakVal">0</span></div>
       <button class="btn-tab" id="btnToggleAlbum" onclick="switchView('album')">🎤 Album Shakira (<span id="albumCountBadge">0</span>/18)</button>
       <button class="btn-tab" id="btnToggleAnalysis" onclick="switchView('analysis')">📊 Progrès</button>
+      <button class="btn-tab" id="btnFullscreen" onclick="toggleFullScreen()" title="Mode plein écran">⛶ Plein écran</button>
     </div>
   </header>
 
@@ -798,7 +805,7 @@
     <div class="game-card" id="questionCard">
       <div class="progress-wrap">
         <span id="questionCounter">Question 1 / 10</span>
-        <span id="nextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+        <span id="nextCardHint">🎁 Encore 10 bonnes réponses pour la prochaine carte Shakira !</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 10%"></div></div>
 
@@ -904,7 +911,7 @@
     <div class="game-card" id="mathQuestionCard">
       <div class="progress-wrap">
         <span id="mathQuestionCounter">Calcul 1 / 10</span>
-        <span id="mathNextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+        <span id="mathNextCardHint">🎁 Encore 15 bonnes réponses pour la prochaine carte Shakira !</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="mathProgressFill" style="width: 10%"></div></div>
 
@@ -998,7 +1005,7 @@
     <div class="game-card" id="asQuestionCard">
       <div class="progress-wrap">
         <span id="asQuestionCounter">Calcul 1 / 10</span>
-        <span id="asNextCardHint">🎁 Encore 8 bonnes réponses pour la prochaine carte Shakira !</span>
+        <span id="asNextCardHint">🎁 Encore 10 bonnes réponses pour la prochaine carte Shakira !</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="asProgressFill" style="width: 10%"></div></div>
 
@@ -1118,7 +1125,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira sur Scène",
     song: "« Waka Waka »",
     desc: "Carte #1 — Concert mondial !",
-    imgUrl: "images/1.jpg",
+    imgUrl: "folder/1.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#db2777"/></linearGradient></defs><rect width="200" height="200" fill="url(#g1)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎤</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #1</text></svg>`
   },
@@ -1127,7 +1134,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Guitare Rock",
     song: "« Whenever, Wherever »",
     desc: "Carte #2 — Solo de guitare !",
-    imgUrl: "images/2.jpg",
+    imgUrl: "folder/2.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect width="200" height="200" fill="url(#g2)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎸</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #2</text></svg>`
   },
@@ -1136,7 +1143,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Superstar",
     song: "« Try Everything »",
     desc: "Carte #3 — Zootopie & magie !",
-    imgUrl: "images/3.jpg",
+    imgUrl: "folder/3.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g3)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌟</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #3</text></svg>`
   },
@@ -1145,7 +1152,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira en Concert",
     song: "« Hips Don't Lie »",
     desc: "Carte #4 — Reine de la danse !",
-    imgUrl: "images/4.jpg",
+    imgUrl: "folder/4.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#eab308"/></linearGradient></defs><rect width="200" height="200" fill="url(#g4)"/><text x="100" y="105" text-anchor="middle" font-size="54">💃</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #4</text></svg>`
   },
@@ -1154,7 +1161,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Live Show",
     song: "« La Bicicleta »",
     desc: "Carte #5 — Énergie maximale !",
-    imgUrl: "images/5.jpg",
+    imgUrl: "folder/5.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs><rect width="200" height="200" fill="url(#g5)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎶</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #5</text></svg>`
   },
@@ -1163,7 +1170,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Soleil de Colombie",
     song: "« Loca »",
     desc: "Carte #6 — Sourire radieux !",
-    imgUrl: "images/6.jpg",
+    imgUrl: "folder/6.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#fb923c"/></linearGradient></defs><rect width="200" height="200" fill="url(#g6)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌺</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #6</text></svg>`
   },
@@ -1172,7 +1179,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Étoile d'Argent",
     song: "« She Wolf »",
     desc: "Carte #7 — Édition brillante !",
-    imgUrl: "images/7.jpg",
+    imgUrl: "folder/7.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#312e81"/><stop offset="100%" stop-color="#6d28d9"/></linearGradient></defs><rect width="200" height="200" fill="url(#g7)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌙</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #7</text></svg>`
   },
@@ -1181,7 +1188,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Trophée d'Or",
     song: "« Chantaje »",
     desc: "Carte #8 — Grande gagnante !",
-    imgUrl: "images/8.jpg",
+    imgUrl: "folder/8.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs><rect width="200" height="200" fill="url(#g8)"/><text x="100" y="105" text-anchor="middle" font-size="54">🏆</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #8</text></svg>`
   },
@@ -1190,7 +1197,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Rock in Rio",
     song: "« Las de la Intuición »",
     desc: "Carte #9 — Ambiance de feu !",
-    imgUrl: "images/9.jpg",
+    imgUrl: "folder/9.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g9)"/><text x="100" y="105" text-anchor="middle" font-size="54">🔥</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #9</text></svg>`
   },
@@ -1199,7 +1206,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Tournée Mondiale",
     song: "« Sale el Sol »",
     desc: "Carte #10 — Rayon de soleil !",
-    imgUrl: "images/10.jpg",
+    imgUrl: "folder/10.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs><rect width="200" height="200" fill="url(#g10)"/><text x="100" y="105" text-anchor="middle" font-size="54">☀️</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #10</text></svg>`
   },
@@ -1208,7 +1215,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Harmonica & Guitare",
     song: "« Te Dejo Madrid »",
     desc: "Carte #11 — Multi-instrumentiste !",
-    imgUrl: "images/11.jpg",
+    imgUrl: "folder/11.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g11" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect width="200" height="200" fill="url(#g11)"/><text x="100" y="105" text-anchor="middle" font-size="54">🎵</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #11</text></svg>`
   },
@@ -1217,7 +1224,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Scène Magique",
     song: "« Gypsy »",
     desc: "Carte #12 — Bohème chic !",
-    imgUrl: "images/12.jpg",
+    imgUrl: "folder/12.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g12" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><rect width="200" height="200" fill="url(#g12)"/><text x="100" y="105" text-anchor="middle" font-size="54">✨</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #12</text></svg>`
   },
@@ -1226,7 +1233,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Public en Folie",
     song: "« La Tortura »",
     desc: "Carte #13 — Duo mythique !",
-    imgUrl: "images/13.jpg",
+    imgUrl: "folder/13.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g13" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e11d48"/><stop offset="100%" stop-color="#f97316"/></linearGradient></defs><rect width="200" height="200" fill="url(#g13)"/><text x="100" y="105" text-anchor="middle" font-size="54">💃</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #13</text></svg>`
   },
@@ -1235,7 +1242,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Festival Live",
     song: "« Ojos Así »",
     desc: "Carte #14 — Rythmes du monde !",
-    imgUrl: "images/14.jpg",
+    imgUrl: "folder/14.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g14" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><rect width="200" height="200" fill="url(#g14)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌍</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #14</text></svg>`
   },
@@ -1244,7 +1251,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Éclat de Rire",
     song: "« Me Enamoré »",
     desc: "Carte #15 — Bonne humeur !",
-    imgUrl: "images/1.jpg",
+    imgUrl: "folder/1.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g15" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#f43f5e"/></linearGradient></defs><rect width="200" height="200" fill="url(#g15)"/><text x="100" y="105" text-anchor="middle" font-size="54">💖</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #15</text></svg>`
   },
@@ -1253,7 +1260,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Gala Prestige",
     song: "« Can't Remember to Forget You »",
     desc: "Carte #16 — Tapis rouge !",
-    imgUrl: "images/2.jpg",
+    imgUrl: "folder/2.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g16" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b91c1c"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><rect width="200" height="200" fill="url(#g16)"/><text x="100" y="105" text-anchor="middle" font-size="54">👑</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #16</text></svg>`
   },
@@ -1262,7 +1269,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Concert Géant",
     song: "« Underneath Your Clothes »",
     desc: "Carte #17 — Émotion pure !",
-    imgUrl: "images/3.jpg",
+    imgUrl: "folder/3.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g17" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="200" height="200" fill="url(#g17)"/><text x="100" y="105" text-anchor="middle" font-size="54">🌠</text><text x="100" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">SHAKIRA #17</text></svg>`
   },
@@ -1271,7 +1278,7 @@ const SHAKIRA_CARDS = [
     title: "Shakira Collector Diamant Alicia",
     song: "« Super Légende Spéciale Alicia »",
     desc: "Carte #18 — Album complet 100% !",
-    imgUrl: "images/4.jpg",
+    imgUrl: "folder/4.jpg",
     origUrl: "",
     fallbackSvg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g18" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="50%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect width="200" height="200" fill="url(#g18)"/><text x="100" y="105" text-anchor="middle" font-size="54">💎</text><text x="100" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">BRAVO ALICIA !</text></svg>`
   }
@@ -1673,7 +1680,13 @@ let seriesMistakes = [];
 
 // Rewards & Analytics state (saved in localStorage so Alicia keeps her cards!)
 let unlockedCardIds = [];
-let totalGoodAnswersEver = 0;
+let goodConjAnswersEver = 0;
+let goodMathAnswersEver = 0;
+let goodAsAnswersEver = 0;
+
+const THRESHOLD_CONJ = 10;
+const THRESHOLD_MATH = 15;
+const THRESHOLD_AS = 10;
 
 let analytics = {
   totalAttempts: 0,
@@ -1711,7 +1724,9 @@ function loadProgress() {
     const saved = JSON.parse(localStorage.getItem("alicia_shakira_progress"));
     if (saved) {
       unlockedCardIds = saved.unlockedCardIds || [];
-      totalGoodAnswersEver = saved.totalGoodAnswersEver || 0;
+      goodConjAnswersEver = saved.goodConjAnswersEver ?? saved.totalGoodAnswersEver ?? 0;
+      goodMathAnswersEver = saved.goodMathAnswersEver || 0;
+      goodAsAnswersEver = saved.goodAsAnswersEver || 0;
       if (saved.analytics) {
         analytics.totalAttempts = saved.analytics.totalAttempts || 0;
         analytics.totalCorrect = saved.analytics.totalCorrect || 0;
@@ -1725,7 +1740,9 @@ function saveProgress() {
   try {
     localStorage.setItem("alicia_shakira_progress", JSON.stringify({
       unlockedCardIds,
-      totalGoodAnswersEver,
+      goodConjAnswersEver,
+      goodMathAnswersEver,
+      goodAsAnswersEver,
       analytics: {
         totalAttempts: analytics.totalAttempts,
         totalCorrect: analytics.totalCorrect,
@@ -2012,17 +2029,20 @@ function generateQuestion(keepSameVerb) {
   renderQuestion();
 }
 
-const ANSWERS_PER_CARD = 8;
 
 function updateRewardHint() {
-  const hints = [document.getElementById("nextCardHint"), document.getElementById("mathNextCardHint"), document.getElementById("asNextCardHint")];
-  hints.forEach(hint => {
+  const items = [
+    { hint: document.getElementById("nextCardHint"), count: goodConjAnswersEver, threshold: THRESHOLD_CONJ },
+    { hint: document.getElementById("mathNextCardHint"), count: goodMathAnswersEver, threshold: THRESHOLD_MATH },
+    { hint: document.getElementById("asNextCardHint"), count: goodAsAnswersEver, threshold: THRESHOLD_AS }
+  ];
+  items.forEach(({ hint, count, threshold }) => {
     if (!hint) return;
     if (unlockedCardIds.length >= SHAKIRA_CARDS.length) {
       hint.textContent = `👑 Bravo Alicia ! Tu as collectionné les ${SHAKIRA_CARDS.length} cartes Shakira !`;
       return;
     }
-    const rem = ANSWERS_PER_CARD - (totalGoodAnswersEver % ANSWERS_PER_CARD);
+    const rem = threshold - (count % threshold);
     hint.textContent = rem === 1
       ? "🎁 Plus qu'1 bonne réponse pour débloquer une carte Shakira !"
       : `🎁 Encore ${rem} bonnes réponses pour débloquer une carte Shakira !`;
@@ -2154,8 +2174,20 @@ function diagnoseMistake(userAns, correctAns, verb) {
   return "Attention à la terminaison";
 }
 
-function checkAndUnlockCard() {
-  if (totalGoodAnswersEver > 0 && totalGoodAnswersEver % ANSWERS_PER_CARD === 0) {
+function checkAndUnlockCard(mode) {
+  let count = 0;
+  let threshold = 10;
+  if (mode === "conj") {
+    count = goodConjAnswersEver;
+    threshold = THRESHOLD_CONJ;
+  } else if (mode === "math") {
+    count = goodMathAnswersEver;
+    threshold = THRESHOLD_MATH;
+  } else if (mode === "as") {
+    count = goodAsAnswersEver;
+    threshold = THRESHOLD_AS;
+  }
+  if (count > 0 && count % threshold === 0) {
     const locked = SHAKIRA_CARDS.filter(c => !unlockedCardIds.includes(c.id));
     if (locked.length > 0) {
       const nextCard = locked[0];
@@ -2173,7 +2205,7 @@ function recordOutcome(isCorrect, userAns) {
 
   if (isCorrect) {
     analytics.totalCorrect++;
-    totalGoodAnswersEver++;
+    goodConjAnswersEver++;
     if (analytics.weaknesses[weakKey]) {
       analytics.weaknesses[weakKey].streakToHeal++;
     }
@@ -2215,7 +2247,7 @@ function recordOutcome(isCorrect, userAns) {
     });
   }
 
-  const newlyUnlocked = isCorrect ? checkAndUnlockCard() : null;
+  const newlyUnlocked = isCorrect ? checkAndUnlockCard('conj') : null;
   saveProgress();
   updateHeaderStats();
   updateRewardHint();
@@ -2508,7 +2540,9 @@ function renderAnalysisPanel() {
 function resetAlbum() {
   if (confirm("Veux-tu vraiment vider ton album Shakira et recommencer à zéro ?")) {
     unlockedCardIds = [];
-    totalGoodAnswersEver = 0;
+    goodConjAnswersEver = 0;
+    goodMathAnswersEver = 0;
+    goodAsAnswersEver = 0;
     saveProgress();
     updateRewardHint();
     renderAlbum();
@@ -2733,7 +2767,7 @@ function renderMathQuestion() {
   } else {
     qcmGrid.classList.add("hidden");
     typeArea.classList.remove("hidden");
-    const slotHtml = `<input type="text" inputmode="numeric" id="mathTypeInput" class="inline-input math-inline" autocomplete="off" placeholder="?" oninput="onMathInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitMathAnswer();}">`;
+    const slotHtml = `<input type="text" inputmode="none" readonly id="mathTypeInput" class="inline-input math-inline" autocomplete="off" placeholder="?" oninput="onMathInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitMathAnswer();}">`;
     if (currentMathQ.holePos === "result") {
       eqBox.innerHTML = `${currentMathQ.a} × ${currentMathQ.b} = ${slotHtml}`;
     } else if (currentMathQ.holePos === "first") {
@@ -2745,7 +2779,6 @@ function renderMathQuestion() {
     inp.value = "";
     inp.disabled = false;
     document.getElementById("submitMathBtn").disabled = false;
-    setTimeout(() => inp.focus(), 30);
   }
 }
 
@@ -2765,7 +2798,6 @@ function backspaceMathDigit() {
   const inp = document.getElementById("mathTypeInput");
   if (!inp) return;
   inp.value = inp.value.slice(0, -1);
-  inp.focus();
 }
 
 function submitMathAnswer() {
@@ -2815,8 +2847,8 @@ function evaluateMathAnswer(userNum) {
     streak++;
     if (streak > bestStreak) bestStreak = streak;
     analytics.totalCorrect++;
-    totalGoodAnswersEver++;
-    newlyUnlocked = checkAndUnlockCard();
+    goodMathAnswersEver++;
+    newlyUnlocked = checkAndUnlockCard('math');
     maybeShowShakiraStreakPopup(streak, newlyUnlocked);
   } else {
     streak = 0;
@@ -3245,7 +3277,7 @@ function renderAsQuestion() {
   } else {
     qcmGrid.classList.add("hidden");
     typeArea.classList.remove("hidden");
-    const slotHtml = `<input type="text" inputmode="numeric" id="asTypeInput" class="inline-input math-inline" style="width:115px; min-width:95px;" autocomplete="off" placeholder="?" oninput="onAsInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitAsAnswer();}">`;
+    const slotHtml = `<input type="text" inputmode="none" readonly id="asTypeInput" class="inline-input math-inline" style="width:115px; min-width:95px;" autocomplete="off" placeholder="?" oninput="onAsInlineInput()" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitAsAnswer();}">`;
     if (currentAsQ.holePos === "result") {
       eqBox.innerHTML = `${currentAsQ.a} ${symbol} ${currentAsQ.b} = ${slotHtml}`;
     } else if (currentAsQ.holePos === "first") {
@@ -3257,7 +3289,6 @@ function renderAsQuestion() {
     inp.value = "";
     inp.disabled = false;
     document.getElementById("submitAsBtn").disabled = false;
-    setTimeout(() => inp.focus(), 30);
   }
 }
 
@@ -3277,7 +3308,6 @@ function backspaceAsDigit() {
   const inp = document.getElementById("asTypeInput");
   if (!inp) return;
   inp.value = inp.value.slice(0, -1);
-  inp.focus();
 }
 
 function submitAsAnswer() {
@@ -3329,8 +3359,8 @@ function evaluateAsAnswer(userNum) {
     streak++;
     if (streak > bestStreak) bestStreak = streak;
     analytics.totalCorrect++;
-    totalGoodAnswersEver++;
-    newlyUnlocked = checkAndUnlockCard();
+    goodAsAnswersEver++;
+    newlyUnlocked = checkAndUnlockCard('as');
     maybeShowShakiraStreakPopup(streak, newlyUnlocked);
   } else {
     streak = 0;
@@ -3434,7 +3464,26 @@ function showAsSeriesSummary() {
   }
 }
 
+
+function toggleFullScreen() {
+  const doc = window.document;
+  const docEl = doc.documentElement;
+  const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+  if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    if (requestFullScreen) {
+      requestFullScreen.call(docEl).catch(() => {});
+    }
+  } else {
+    if (cancelFullScreen) {
+      cancelFullScreen.call(doc).catch(() => {});
+    }
+  }
+}
+
 init();
+
 </script>
 
 <div id="photoModal" class="photo-modal hidden" onclick="if(event.target===this) closeCardZoom()">
